@@ -1,0 +1,246 @@
+// AccessLayer/portal-access/angular-app/src/app/currency-converter/currency-converter.component.scss
+td.label {
+  font-weight: bold;
+}
+
+.header-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  line-height: 100px;
+
+  .logo {
+    display: inline-block;
+    background: url("assets/images/jlupin_next_server_logo.png") no-repeat;
+    width: 70px;
+    height: 100px;
+    vertical-align: middle;
+    margin-right: 15px;
+  }
+}
+
+.comment {
+  margin-bottom: 10px;
+
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+.form-container {
+  margin-bottom: 40px;
+
+  .btn {
+    margin-left: 10px;
+  }
+}
+
+.result-container {
+  margin-bottom: 40px;
+
+  .table {
+    max-width: 300px;
+  }
+}
+
+$fadeInOpacity: 0.5;
+$animationTime: 3s;
+$showTime: 1s;
+
+.architecture {
+  background: url("assets/images/background.png") no-repeat 0px 92px;
+  height: 371px;
+  width: 279px;
+  margin: 0px auto 30px;
+  padding: 0px 10px 0px 16px;
+  text-align: center;
+
+  .computer {
+    background: url("assets/images/computer_with_arrow.png") no-repeat;
+    width: 78px;
+    height: 142px;
+    margin: 0px auto;
+  }
+
+  .micro-app-web {
+    background: url("assets/images/micro_app_web.png") 11px 0px no-repeat;
+    width: 145px;
+    height: 65px;
+    margin: -12px auto 0px;
+
+    .shadow {
+      background: url("assets/images/micro_app_web_shadow.png") 11px 0px no-repeat;
+      width: 145px;
+      height: 65px;
+      margin: 0px auto;
+      opacity: 0;
+
+      -webkit-animation: fade-micro-app-web $animationTime;
+         -moz-animation: fade-micro-app-web $animationTime;
+           -o-animation: fade-micro-app-web $animationTime;
+              animation: fade-micro-app-web $animationTime;
+    }
+  }
+
+  .main-server {
+    background: url("assets/images/main_server.png") 10px 0px no-repeat;
+    width: 142px;
+    height: 57px;
+    margin: -11px auto 0px;
+
+    .shadow {
+      background: url("assets/images/main_server_shadow.png") 10px 0px no-repeat;
+      width: 142px;
+      height: 57px;
+      margin: 0px auto;
+      opacity: 0;
+
+      -webkit-animation: fade-main-server $animationTime;
+         -moz-animation: fade-main-server $animationTime;
+           -o-animation: fade-main-server $animationTime;
+              animation: fade-main-server $animationTime;
+    }
+  }
+
+  .micro-app {
+    background: url("assets/images/micro_app.png") 11px 0px no-repeat;
+    width: 166px;
+    height: 64px;
+    margin: -11px auto 0px;
+
+    .shadow {
+      background: url("assets/images/micro_app_shadow.png") 11px 0px no-repeat;
+      width: 166px;
+      height: 64px;
+      margin: 0px auto;
+      opacity: 0;
+
+      -webkit-animation: fade-micro-app $animationTime;
+         -moz-animation: fade-micro-app $animationTime;
+           -o-animation: fade-micro-app $animationTime;
+              animation: fade-micro-app $animationTime;
+    }
+  }
+
+  .connector {
+    background: url("assets/images/connector.png") no-repeat;
+    width: 1px;
+    height: 23px;
+    margin: 0px auto;
+  }
+}
+
+.fade-in {
+  -webkit-animation: fadeIn $showTime;
+     -moz-animation: fadeIn $showTime;
+       -o-animation: fadeIn $showTime;
+          animation: fadeIn $showTime;
+}
+
+@keyframes fade-micro-app-web {
+      0% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+    100% { opacity: 0; }
+}
+@-webkit-keyframes fade-micro-app-web {
+      0% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes fade-micro-app-web {
+      0% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+    100% { opacity: 0; }
+}
+@-o-keyframes fade-micro-app-web {
+      0% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+    100% { opacity: 0; }
+}
+
+@keyframes fade-main-server {
+      0% { opacity: 0; }
+     18% { opacity: 0; }
+     28% { opacity: $fadeInOpacity; }
+     72% { opacity: $fadeInOpacity; }
+     82% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-webkit-keyframes fade-main-server {
+      0% { opacity: 0; }
+     18% { opacity: 0; }
+     28% { opacity: $fadeInOpacity; }
+     72% { opacity: $fadeInOpacity; }
+     82% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes fade-main-server {
+      0% { opacity: 0; }
+     18% { opacity: 0; }
+     28% { opacity: $fadeInOpacity; }
+     72% { opacity: $fadeInOpacity; }
+     82% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-o-keyframes fade-main-server {
+      0% { opacity: 0; }
+     18% { opacity: 0; }
+     28% { opacity: $fadeInOpacity; }
+     72% { opacity: $fadeInOpacity; }
+     82% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes fade-micro-app {
+      0% { opacity: 0; }
+     36% { opacity: 0; }
+     46% { opacity: $fadeInOpacity; }
+     54% { opacity: $fadeInOpacity; }
+     64% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-webkit-keyframes fade-micro-app {
+      0% { opacity: 0; }
+     36% { opacity: 0; }
+     46% { opacity: $fadeInOpacity; }
+     54% { opacity: $fadeInOpacity; }
+     64% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes fade-micro-app {
+      0% { opacity: 0; }
+     36% { opacity: 0; }
+     46% { opacity: $fadeInOpacity; }
+     54% { opacity: $fadeInOpacity; }
+     64% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-o-keyframes fade-micro-app {
+      0% { opacity: 0; }
+     36% { opacity: 0; }
+     46% { opacity: $fadeInOpacity; }
+     54% { opacity: $fadeInOpacity; }
+     64% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+      0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-webkit-keyframes fadeIn {
+      0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+      0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+      0% { opacity: 0; }
+    100% { opacity: 1; }
+}

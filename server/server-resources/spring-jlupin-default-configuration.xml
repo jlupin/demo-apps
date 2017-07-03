@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="jLupinAccessServices" class="com.jlupin.interfaces.service.access.enums.JLupinServiceAccessModeEnum"
+          factory-method="valueOf">
+        <constructor-arg>
+            <value>PUBLIC</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="jLupinMessageProducer"
+          class="com.jlupin.impl.producer.service.errormessage.JLupinDefaultErrorMessageProducerImpl">
+        <constructor-arg index="0" type="java.lang.String[]" value="global_messages"/>
+        <constructor-arg index="1"><ref bean="locale"/></constructor-arg>
+        <constructor-arg index="2" type="java.lang.String" value="ISO-8859-1"/>
+        <constructor-arg index="3" type="java.lang.String" value="UTF-8"/>
+    </bean>
+
+    <bean id="jLupinServiceExceptionHandler"
+          class="com.jlupin.impl.handler.service.JLupinDefaultServiceExceptionHandlerImpl">
+        <constructor-arg index="0"><ref bean="jLupinMessageProducer"/></constructor-arg>
+    </bean>
+
+    <bean id="locale" class="java.util.Locale">
+        <constructor-arg index="0" type="java.lang.String" value="en"/>
+    </bean>
+
+    <!-- XML defaults converters -->
+    <bean id="jLupinXMLToObjectParamArraySequenceDefaultImpl" class="com.jlupin.impl.service.sequence.defaults.impl.xml.paramarray.JLupinXMLToObjectParamArraySequenceDefaultImpl">
+    </bean>
+
+    <bean id="jLupinObjectToXMLParamArraySequenceDefaultImpl" class="com.jlupin.impl.service.sequence.defaults.impl.xml.paramarray.JLupinObjectToXMLParamArraySequenceDefaultImpl">
+    </bean>
+
+    <!-- XML XStream converters -->
+    <bean id="jLupinXMLToObjectParamArraySequenceXStreamImpl" class="com.jlupin.impl.service.sequence.xstream.impl.xml.paramarray.JLupinXMLToObjectParamArraySequenceXStreamImpl">
+    </bean>
+
+    <bean id="jLupinObjectToXMLParamArraySequenceXStreamImpl" class="com.jlupin.impl.service.sequence.xstream.impl.xml.paramarray.JLupinObjectToXMLParamArraySequenceXStreamImpl">
+    </bean>
+
+    <!-- JSON XStream converters -->
+    <bean id="jLupinJsonToObjectParamArraySequenceXStreamImpl" class="com.jlupin.impl.service.sequence.xstream.impl.json.paramarray.JLupinJsonToObjectParamArraySequenceXStreamImpl">
+    </bean>
+
+    <bean id="jLupinObjectToJsonParamArraySequenceXStreamImpl" class="com.jlupin.impl.service.sequence.xstream.impl.json.paramarray.JLupinObjectToJsonParamArraySequenceXStreamImpl">
+    </bean>
+
+    <!-- XML Jackson converters -->
+    <bean id="jLupinXMLToObjectParamArraySequenceJacksonImpl" class="com.jlupin.impl.service.sequence.jackson.impl.xml.paramarray.JLupinXMLToObjectParamArraySequenceJacksonImpl">
+    </bean>
+
+    <bean id="jLupinObjectToXMLParamArraySequenceJacksonImpl" class="com.jlupin.impl.service.sequence.jackson.impl.xml.paramarray.JLupinObjectToXMLParamArraySequenceJacksonImpl">
+    </bean>
+
+    <!-- JSON Jackson converters -->
+    <bean id="jLupinJsonToObjectParamArraySequenceJacksonImpl" class="com.jlupin.impl.service.sequence.jackson.impl.json.paramarray.JLupinJsonToObjectParamArraySequenceJacksonImpl">
+    </bean>
+
+    <bean id="jLupinObjectToJsonParamArraySequenceJacksonImpl" class="com.jlupin.impl.service.sequence.jackson.impl.json.paramarray.JLupinObjectToJsonParamArraySequenceJacksonImpl">
+    </bean>
+
+    <bean id="defaultParamArrayXmlInOutSequence" class="com.jlupin.impl.service.sequencer.JLupinMultiParamsNamedMethodWithParamArraySequencerImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="jLupinXMLToObjectParamArraySequenceDefaultImpl" />
+                <value>X{1}</value>
+                <ref bean="jLupinObjectToXMLParamArraySequenceDefaultImpl" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="xStreamParamArrayXmlInOutSequence" class="com.jlupin.impl.service.sequencer.JLupinMultiParamsNamedMethodWithParamArraySequencerImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="jLupinXMLToObjectParamArraySequenceXStreamImpl" />
+                <value>X{1}</value>
+                <ref bean="jLupinObjectToXMLParamArraySequenceXStreamImpl" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="xStreamParamArrayJsonInOutSequence" class="com.jlupin.impl.service.sequencer.JLupinMultiParamsNamedMethodWithParamArraySequencerImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="jLupinJsonToObjectParamArraySequenceXStreamImpl" />
+                <value>X{1}</value>
+                <ref bean="jLupinObjectToJsonParamArraySequenceXStreamImpl" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="jacksonParamArrayXmlInOutSequence" class="com.jlupin.impl.service.sequencer.JLupinMultiParamsNamedMethodWithParamArraySequencerImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="jLupinXMLToObjectParamArraySequenceJacksonImpl" />
+                <value>X{1}</value>
+                <ref bean="jLupinObjectToXMLParamArraySequenceJacksonImpl" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="jacksonParamArrayJsonInOutSequence" class="com.jlupin.impl.service.sequencer.JLupinMultiParamsNamedMethodWithParamArraySequencerImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="jLupinJsonToObjectParamArraySequenceJacksonImpl" />
+                <value>X{1}</value>
+                <ref bean="jLupinObjectToJsonParamArraySequenceJacksonImpl" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="jLupinProxyFactory" class="com.jlupin.impl.proxy.factory.JLupinProxyFactory"/>
+    <bean id="xStreamXmlSerializer" class="com.thoughtworks.xstream.XStream"/>
+    <bean id="xStreamJsonSerializer" class="com.thoughtworks.xstream.XStream">
+        <constructor-arg>
+            <bean class="com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"/>
+        </constructor-arg>
+    </bean>
+    <bean id="jacksonXmlSerializer" class="com.fasterxml.jackson.dataformat.xml.XmlMapper"/>
+    <bean id="jacksonJsonSerializer" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+</beans>
