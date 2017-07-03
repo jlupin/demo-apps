@@ -37,6 +37,9 @@ fabric.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # Server
+server/application/**/*.jar
+server/application/**/*.war
+server/application/**/*.ear
 server/logs/**/*
 server/start/temp/**/*
 server/temp/**/*
