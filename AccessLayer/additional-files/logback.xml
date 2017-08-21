@@ -1,0 +1,28 @@
+<configuration scan="true">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %-5p [%c] \(%t\) %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>../logs/server/microservice/portal-access/microservice.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../logs/server/microservice/portal-access/microservice.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %-5p [%c] \(%t\) %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- <logger name="org.springframework" level="DEBUG"/> -->
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

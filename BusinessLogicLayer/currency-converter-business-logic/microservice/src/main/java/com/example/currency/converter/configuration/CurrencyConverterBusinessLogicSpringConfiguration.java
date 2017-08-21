@@ -1,13 +1,9 @@
 package com.example.currency.converter.configuration;
 
-import com.jlupin.common.container.JLupinCommonProgrammingContainer;
-import com.jlupin.impl.balancer.ext.impl.roundrobin.JLupinRoundRobinLoadBalancerImpl;
-import com.jlupin.impl.balancer.structures.property.JLupinLoadBalancerProperties;
-import com.jlupin.impl.balancer.structures.wrapper.JLupinLoadBalancerPropertiesWrapper;
-import com.jlupin.impl.balancer.type.JLupinBalancerType;
-import com.jlupin.impl.client.delegator.balance.JLupinRMCLoadBalancerDelegatorImpl;
+import com.jlupin.impl.client.util.JLupinClientUtil;
 import com.jlupin.interfaces.client.delegator.JLupinDelegator;
 import com.jlupin.interfaces.client.delegator.exception.JLupinDelegatorException;
+import com.jlupin.interfaces.common.enums.PortType;
 import com.jlupin.interfaces.container.system.JLupinSystemContainer;
 import com.jlupin.interfaces.logger.JLupinLogger;
 import org.springframework.context.annotation.Bean;
@@ -34,28 +30,14 @@ public class CurrencyConverterBusinessLogicSpringConfiguration {
 
     public CurrencyConverterBusinessLogicSpringConfiguration() {
         final JLupinSystemContainer jLupinSystemContainer = JLupinSystemContainer.getInstance();
-        final JLupinCommonProgrammingContainer jLupinCommonProgrammingContainer = JLupinCommonProgrammingContainer.getInstance();
 
         jLupinLogger = jLupinSystemContainer.getJLupinLogger();
-
-        final JLupinLoadBalancerProperties jLupinLoadBalancerProperties = new JLupinLoadBalancerProperties();
-        jLupinLoadBalancerProperties.setJLupinMainServerInZoneConfigurations(
-                jLupinCommonProgrammingContainer.getJLupinMainServersInZone()
-        );
-
-        final JLupinLoadBalancerPropertiesWrapper jLupinLoadBalancerPropertiesWrapper = new JLupinLoadBalancerPropertiesWrapper();
-        jLupinLoadBalancerPropertiesWrapper.setJLupinLoadBalancerProperties(jLupinLoadBalancerProperties);
-
-        JLupinRoundRobinLoadBalancerImpl jLupinLoadBalancer = new JLupinRoundRobinLoadBalancerImpl(
-                jLupinLogger,
+        jLupinDelegator = JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(
                 HOW_OFTEN_CHECKING_SERVER_IN_MILLIS,
                 REPEATS_AMOUNT,
-                CHANGE_SERVER_INTERVAL_IN_MILLIS
+                CHANGE_SERVER_INTERVAL_IN_MILLIS,
+                PortType.JLRMC
         );
-        jLupinLoadBalancer.setJLupinBalancerType(JLupinBalancerType.INNER_MICROSERVICE);
-        jLupinLoadBalancer.setJLupinLoadBalancerPropertiesWrapper(jLupinLoadBalancerPropertiesWrapper);
-
-        jLupinDelegator = new JLupinRMCLoadBalancerDelegatorImpl(jLupinLoadBalancer, jLupinSystemContainer.getJLupinSerializer());
     }
 
     @PostConstruct

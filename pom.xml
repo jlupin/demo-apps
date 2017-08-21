@@ -19,6 +19,16 @@
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <!-- Repository is also accessible using https connection: -->
+        <!-- https://support.jlupin.com/maven2/ -->
+        <pluginRepository>
+            <id>jlupin-central</id>
+            <name>jlupin</name>
+            <url>http://support.jlupin.com/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <modules>
         <module>common-util</module>
         <module>common-pojo</module>
@@ -29,46 +39,29 @@
     </modules>
 
     <properties>
-        <server.path>${project.basedir}/../../../server</server.path>
-        <server.version>1.4.0.0</server.version>
+        <server.version>1.4.0.2</server.version>
+
         <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
+        <maven.shade.plugin.version>3.0.0</maven.shade.plugin.version>
+        <jlupin.next.server.maven.plugin.version>1.0.0</jlupin.next.server.maven.plugin.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.13</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.3</version>
-                <executions>
-                    <execution>
-                        <id>include-all-classes</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>com.example.currency.converter</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.4</version>
+                <version>2.8.2</version>
                 <executions>
                     <execution>
                         <id>default-deploy</id>
@@ -77,6 +70,69 @@
                 </executions>
             </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven.shade.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>include-all-artifacts-with-same-group-id</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                            <configuration>
+                                <filters>
+                                    <filter>
+                                        <artifact>${project.groupId}:*</artifact>
+                                        <includes>
+                                            <include>**</include>
+                                        </includes>
+                                    </filter>
+                                </filters>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.jlupin</groupId>
+                    <artifactId>jlupin-next-server-maven-plugin</artifactId>
+                    <version>${jlupin.next.server.maven.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>jlupin-zip</id>
+                            <goals>
+                                <goal>zip</goal>
+                            </goals>
+                            <configuration>
+                                <additionalFilesDirectories>
+                                    <param>../additional-files</param>
+                                </additionalFilesDirectories>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>jlupin-deploy</id>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>jlupin-generate-swagger</id>
+                            <goals>
+                                <goal>generate-swagger</goal>
+                            </goals>
+                            <configuration>
+                                <skipSwaggerGeneration>true</skipSwaggerGeneration>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

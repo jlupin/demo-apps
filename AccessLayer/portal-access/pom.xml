@@ -2,13 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.2.RELEASE</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example.currency.converter</groupId>
     <artifactId>portal-access</artifactId>
@@ -16,8 +15,29 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+        <!-- Repository is also accessible using https connection: -->
+        <!-- https://support.jlupin.com/maven2/ -->
+        <repository>
+            <id>jlupin-central</id>
+            <name>jlupin</name>
+            <url>http://support.jlupin.com/maven2/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <!-- Repository is also accessible using https connection: -->
+        <!-- https://support.jlupin.com/maven2/ -->
+        <pluginRepository>
+            <id>jlupin-central</id>
+            <name>jlupin</name>
+            <url>http://support.jlupin.com/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <properties>
-        <server.version>1.4.0.0</server.version>
+        <server.version>1.4.0.2</server.version>
+        <jlupin.next.server.maven.plugin.version>1.0.0</jlupin.next.server.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -26,6 +46,7 @@
             <groupId>com.jlupin</groupId>
             <artifactId>jlupin-client-assembly</artifactId>
             <version>${server.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -45,6 +66,7 @@
 
     <build>
         <finalName>portal-access</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -53,6 +75,42 @@
                     <execution>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-next-server-maven-plugin</artifactId>
+                <version>${jlupin.next.server.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jlupin-zip</id>
+                        <goals>
+                            <goal>zip</goal>
+                        </goals>
+                        <configuration>
+                            <additionalFilesDirectories>
+                                <param>../additional-files</param>
+                            </additionalFilesDirectories>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jlupin-deploy</id>
+                        <goals>
+                            <goal>deploy</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -106,14 +164,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <!-- Repository is also accessible using https connection: -->
-        <!-- https://support.jlupin.com/maven2/ -->
-        <repository>
-            <id>jlupin-central</id>
-            <name>jlupin</name>
-            <url>http://support.jlupin.com/maven2/</url>
-        </repository>
-    </repositories>
 </project>

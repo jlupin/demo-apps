@@ -49,25 +49,33 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-next-server-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-application-jar</id>
-                        <phase>deploy</phase>
                         <goals>
-                            <goal>copy-resources</goal>
+                            <goal>generate-swagger</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${server.path}/application/${project.build.finalName}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>target</directory>
-                                    <includes>
-                                        <include>${project.build.finalName}.jar</include>
-                                    </includes>
-                                </resource>
-                            </resources>
+                            <skipSwaggerGeneration>false</skipSwaggerGeneration>
+                            <apiSources>
+                                <apiSource>
+                                    <springmvc>false</springmvc>
+                                    <locations>com.example.currency.converter.service</locations>
+                                    <basePath>${artifactId}</basePath>
+                                    <schemes>http</schemes>
+                                    <host>localhost:8082</host>
+                                    <info>
+                                        <title>Currency Converter API</title>
+                                        <version>v1</version>
+                                    </info>
+                                    <swaggerDirectory>target/${artifactId}</swaggerDirectory>
+                                </apiSource>
+                            </apiSources>
                         </configuration>
                     </execution>
                 </executions>
