@@ -28,6 +28,7 @@ public class CurrencyConverterServiceImpl implements CurrencyConverterService {
     @Autowired
     private ExchangeBean exchangeBean;
 
+    @Override
     public BigDecimal convert(BigDecimal valueInUSD, Currency to){
         try {
             final double exchangeRatio = exchangeBean.getRatio(Currency.USD, to);

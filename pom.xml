@@ -39,7 +39,7 @@
     </modules>
 
     <properties>
-        <server.version>1.4.0.2</server.version>
+        <server.version>1.4.0.3</server.version>
 
         <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
         <maven.shade.plugin.version>3.0.0</maven.shade.plugin.version>

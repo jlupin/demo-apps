@@ -1,15 +1,18 @@
 package com.example.currency.converter.business.logic.layer;
 
-import com.jlupin.impl.client.delegator.JLupinSocketDelegatorImpl;
+import com.example.currency.converter.common.pojo.Currency;
+import com.example.currency.converter.service.interfaces.CurrencyConverterService;
+import com.jlupin.common.communication.common.various.JLupinMainServerInZoneConfiguration;
+import com.jlupin.impl.client.util.JLupinClientUtil;
 import com.jlupin.impl.logger.impl.log4j.JLupinLoggerOverLog4jImpl;
 import com.jlupin.impl.serialize.JLupinFSTSerializerImpl;
 import com.jlupin.interfaces.client.delegator.JLupinDelegator;
-import com.jlupin.impl.client.seleucia.proxy.producer.ext.JLupinSeleuciaProxyObjectSupportsExceptionProducerImpl;
 import com.jlupin.interfaces.client.proxy.producer.JLupinProxyObjectProducer;
+import com.jlupin.interfaces.common.enums.PortType;
 import com.jlupin.interfaces.logger.JLupinLogger;
 import com.jlupin.interfaces.serialize.JLupinSerializer;
-
-import java.net.InetSocketAddress;
+import org.junit.Test;
+import java.math.BigDecimal;
 
 /**
  * @author Piotr Heilman
@@ -24,23 +27,31 @@ public class CurrencyConverterBusinessLogicTest {
     }
 
     private JLupinDelegator jLupinDelegator() {
-        JLupinSocketDelegatorImpl jLupinDelegator = new JLupinSocketDelegatorImpl(jLupinLogger(), jLupinSerializer());
-        jLupinDelegator.setSocketAddressToConnectServer(new InetSocketAddress("localhost", 9090));
-        jLupinDelegator.setReadTimeout(30000);
+        final JLupinMainServerInZoneConfiguration[] mainServerInZoneConfigurations = new JLupinMainServerInZoneConfiguration[]{
+                new JLupinMainServerInZoneConfiguration("NODE_1", "127.0.0.1", 9090, 9095, 9096, 9097)
+        };
 
+        final JLupinDelegator jLupinDelegator = JLupinClientUtil.generateOuterClientLoadBalancerDelegator(
+                5000,
+                3,
+                1000,
+                PortType.JLRMC,
+                mainServerInZoneConfigurations,
+                jLupinLogger(),
+                jLupinSerializer()
+        );
         return jLupinDelegator;
     }
 
     private JLupinProxyObjectProducer jLupinProxyObjectProducer() {
-        return new JLupinSeleuciaProxyObjectSupportsExceptionProducerImpl(
-                "currency-converter-business-logic-microservice", jLupinDelegator(), jLupinLogger()
-        );
+        return JLupinClientUtil.generateProxyObjectProducer("currency-converter-business-logic-microservice", jLupinDelegator(), jLupinLogger());
     }
 
     // Example test
-    // @Test
-    // public void exampleTest() {
-    //     ExampleService service = jLupinProxyObjectProducer().produceObject(ExampleService.class);
-    //     assertEquals("2 + 2 must be 4", new Integer(4), service.add(2, 2));
-    // }
+    @Test
+    public void exampleTest() {
+        CurrencyConverterService currencyConverterService = jLupinProxyObjectProducer().produceObject(CurrencyConverterService.class);
+        BigDecimal result = currencyConverterService.convert(new BigDecimal("123.32"), Currency.EUR);
+        System.out.println(result);
+    }
 }
