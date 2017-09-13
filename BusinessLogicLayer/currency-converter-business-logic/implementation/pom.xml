@@ -10,7 +10,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>currency-converter-business-logic-microservice</artifactId>
+    <name>currency-converter</name>
+    <artifactId>currency-converter-implementation</artifactId>
+
+    <properties>
+        <jlupin.skipDeploy>false</jlupin.skipDeploy>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -49,6 +54,14 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-next-server-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>com.jlupin</groupId>
                 <artifactId>jlupin-next-server-maven-plugin</artifactId>
