@@ -41,7 +41,7 @@ public class PortalSpringConfiguration {
 
     @Bean
     public JLupinProxyObjectProducer getCurrencyConverterBusinessLogicMicroserviceProxyObjectProducer() {
-           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-business-logic-microservice", getJLupinDelegator(), getJLupinLogger());
+           return JLupinClientUtil.generateProxyObjectProducer("currency-converter", getJLupinDelegator(), getJLupinLogger());
     }
 
     @Bean(name = "currencyConverterService")

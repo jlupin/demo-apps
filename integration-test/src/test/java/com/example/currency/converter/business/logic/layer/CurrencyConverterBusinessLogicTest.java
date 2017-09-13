@@ -44,7 +44,7 @@ public class CurrencyConverterBusinessLogicTest {
     }
 
     private JLupinProxyObjectProducer jLupinProxyObjectProducer() {
-        return JLupinClientUtil.generateProxyObjectProducer("currency-converter-business-logic-microservice", jLupinDelegator(), jLupinLogger());
+        return JLupinClientUtil.generateProxyObjectProducer("currency-converter", jLupinDelegator(), jLupinLogger());
     }
 
     // Example test
