@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PreDestroy;
+
 /**
  * @author Piotr Heilman
  */
@@ -24,14 +26,29 @@ public class PortalSpringConfiguration {
 
     @Bean
     public JLupinDelegator getJLupinDelegator() {
-        JLupinDelegator jLupinDelegator = JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(
-                                          HOW_OFTEN_CHECKING_SERVER_IN_MILLIS,REPEATS_AMOUNT,CHANGE_SERVER_INTERVAL_IN_MILLIS, PortType.JLRMC);
+        final JLupinDelegator jLupinDelegator = JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(
+                HOW_OFTEN_CHECKING_SERVER_IN_MILLIS,
+                REPEATS_AMOUNT,
+                CHANGE_SERVER_INTERVAL_IN_MILLIS,
+                PortType.JLRMC
+        );
+
         try {
             jLupinDelegator.before();
         } catch (JLupinDelegatorException e) {
-           throw new IllegalStateException("can not executing delegator before method caused by:", e);
+           throw new IllegalStateException("can not execute delegator's before method caused by:", e);
         }
         return jLupinDelegator;
+    }
+
+    @PreDestroy
+    public void destroy() {
+        try {
+            getJLupinDelegator().after();
+        } catch (JLupinDelegatorException e) {
+            throw new IllegalStateException("can not execute delegator's after method caused by:", e);
+        }
+        JLupinClientUtil.closeResources();
     }
 
     @Bean
