@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>currency-converter-interfaces</artifactId>
+    <artifactId>currency-converter-business-logic-interfaces</artifactId>
 
     <dependencies>
         <dependency>

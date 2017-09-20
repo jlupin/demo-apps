@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>currency-converter-root</artifactId>
+        <groupId>com.example.currency.converter</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>./../../../pom.xml</relativePath>
+    </parent>
+
+    <name>exchange-rates</name>
+    <artifactId>exchange-rates-data-implementation</artifactId>
+
+    <properties>
+        <jlupin.skipDeploy>false</jlupin.skipDeploy>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.context.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>exchange-rates-data-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>common-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>common-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- JLupin dependencies -->
+        <dependency>
+            <groupId>com.jlupin</groupId>
+            <artifactId>jlupin-client-assembly</artifactId>
+            <version>${server.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-next-server-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

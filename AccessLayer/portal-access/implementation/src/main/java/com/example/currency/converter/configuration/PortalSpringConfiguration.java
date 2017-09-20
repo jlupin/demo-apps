@@ -57,13 +57,33 @@ public class PortalSpringConfiguration {
     }
 
     @Bean
-    public JLupinProxyObjectProducer getCurrencyConverterBusinessLogicMicroserviceProxyObjectProducer() {
-           return JLupinClientUtil.generateProxyObjectProducer("currency-converter", getJLupinDelegator(), getJLupinLogger());
+    public JLupinProxyObjectProducer getCurrencyConverterEURBusinessLogicMicroserviceProxyObjectProducer() {
+           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-eur", getJLupinDelegator(), getJLupinLogger());
     }
 
-    @Bean(name = "currencyConverterService")
-    public CurrencyConverterService getCurrencyConverterService() {
-        return getCurrencyConverterBusinessLogicMicroserviceProxyObjectProducer().produceObject(CurrencyConverterService.class);
+    @Bean
+    public JLupinProxyObjectProducer getCurrencyConverterGBPBusinessLogicMicroserviceProxyObjectProducer() {
+           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-gbp", getJLupinDelegator(), getJLupinLogger());
+    }
+
+    @Bean
+    public JLupinProxyObjectProducer getCurrencyConverterCHFBusinessLogicMicroserviceProxyObjectProducer() {
+           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-chf", getJLupinDelegator(), getJLupinLogger());
+    }
+
+    @Bean(name = "currencyConverterEURService")
+    public CurrencyConverterService getCurrencyConverterEURService() {
+        return getCurrencyConverterEURBusinessLogicMicroserviceProxyObjectProducer().produceObject(CurrencyConverterService.class);
+    }
+
+    @Bean(name = "currencyConverterGBPService")
+    public CurrencyConverterService getCurrencyConverterGBPService() {
+        return getCurrencyConverterGBPBusinessLogicMicroserviceProxyObjectProducer().produceObject(CurrencyConverterService.class);
+    }
+
+    @Bean(name = "currencyConverterCHFService")
+    public CurrencyConverterService getCurrencyConverterCHFService() {
+        return getCurrencyConverterCHFBusinessLogicMicroserviceProxyObjectProducer().produceObject(CurrencyConverterService.class);
     }
 }
 

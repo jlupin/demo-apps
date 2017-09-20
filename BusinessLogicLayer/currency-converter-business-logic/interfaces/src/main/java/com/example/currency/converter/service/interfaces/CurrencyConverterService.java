@@ -2,8 +2,8 @@
 package com.example.currency.converter.service.interfaces;
 
 import com.example.currency.converter.common.pojo.Currency;
-import com.example.currency.converter.service.pojo.ConvertRequest;
-import com.example.currency.converter.service.pojo.ConvertResponse;
+import com.example.currency.converter.service.pojo.in.ConvertIn;
+import com.example.currency.converter.service.pojo.out.ConvertOut;
 
 import java.math.BigDecimal;
 
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @author Piotr Heilman
  */
 public interface CurrencyConverterService {
-    BigDecimal convert(BigDecimal valueInUSD, Currency to);
+    BigDecimal convert(BigDecimal value, Currency from, Currency to);
 
-    ConvertResponse convertMoney(ConvertRequest in);
+    ConvertOut convertMoney(ConvertIn in);
 }

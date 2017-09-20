@@ -46,7 +46,7 @@
     <!-- ======================= -->
 
     <root>
-        <priority value="debug"/>
+        <priority value="info"/>
         <appender-ref ref="ASYNC_FILE"/>
     </root>
 

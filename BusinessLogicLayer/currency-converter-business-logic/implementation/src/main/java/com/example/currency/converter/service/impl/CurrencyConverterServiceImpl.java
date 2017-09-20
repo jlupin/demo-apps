@@ -1,12 +1,11 @@
-// BusinessLogicLayer/currency-converter-business-logic/microservice/src/main/java/com/example/currency/converter/service/impl/CurrencyConverterServiceImpl.java
 package com.example.currency.converter.service.impl;
 
 import com.example.currency.converter.bean.exception.UndefinedRatioException;
 import com.example.currency.converter.bean.interfaces.ExchangeBean;
 import com.example.currency.converter.common.pojo.Currency;
 import com.example.currency.converter.service.interfaces.CurrencyConverterService;
-import com.example.currency.converter.service.pojo.ConvertRequest;
-import com.example.currency.converter.service.pojo.ConvertResponse;
+import com.example.currency.converter.service.pojo.in.ConvertIn;
+import com.example.currency.converter.service.pojo.out.ConvertOut;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -29,32 +28,29 @@ public class CurrencyConverterServiceImpl implements CurrencyConverterService {
     private ExchangeBean exchangeBean;
 
     @Override
-    public BigDecimal convert(BigDecimal valueInUSD, Currency to){
+    public BigDecimal convert(BigDecimal value, Currency from, Currency to) {
         try {
-            final double exchangeRatio = exchangeBean.getRatio(Currency.USD, to);
-            final BigDecimal result = valueInUSD.multiply(BigDecimal.valueOf(exchangeRatio));
+            final double exchangeRatio = exchangeBean.getRatio(from, to);
+            final BigDecimal result = value.multiply(BigDecimal.valueOf(exchangeRatio));
             return result.setScale(2, BigDecimal.ROUND_HALF_UP);
         } catch (UndefinedRatioException e) {
-            return BigDecimal.valueOf(0);
+            return null;
         }
     }
 
     @ApiOperation("Convert money.")
     @Override
-    public ConvertResponse convertMoney(@ApiParam("Value to convert.") ConvertRequest in){
+    public ConvertOut convertMoney(@ApiParam("Value to convert.") ConvertIn in){
         try {
-            final double exchangeRatio = exchangeBean.getRatio(Currency.USD, in.getDesiredCurrency());
-            final BigDecimal result = in.getValueInUsd().multiply(BigDecimal.valueOf(exchangeRatio));
+            final double exchangeRatio = exchangeBean.getRatio(in.getFrom(), in.getTo());
+            final BigDecimal result = in.getValue().multiply(BigDecimal.valueOf(exchangeRatio));
 
-            final ConvertResponse out = new ConvertResponse();
+            final ConvertOut out = new ConvertOut();
             out.setValue(result.setScale(2, BigDecimal.ROUND_HALF_UP));
-            out.setCurrency(in.getDesiredCurrency());
+            out.setCurrency(in.getTo());
             return out;
         } catch (UndefinedRatioException e) {
-            final ConvertResponse out = new ConvertResponse();
-            out.setValue(BigDecimal.valueOf(0));
-            out.setCurrency(in.getDesiredCurrency());
-            return out;
+            throw new IllegalStateException("Rate conversion from " + in.getFrom().toString() + " to " + in.getTo().toString() + " is undefined.");
         }
     }
 }

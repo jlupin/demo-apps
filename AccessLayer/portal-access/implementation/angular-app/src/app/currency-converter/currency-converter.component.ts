@@ -1,6 +1,5 @@
-// AccessLayer/portal-access/angular-app/src/app/currency-converter/currency-converter.component.ts
 import { Component }                from '@angular/core';
-import { ConvertedAmount }          from './converted-amount';
+import { ConvertOut }               from './convert-out';
 import { CurrencyConverterService } from './currency-converter.service';
 
 @Component({
@@ -10,9 +9,15 @@ import { CurrencyConverterService } from './currency-converter.service';
   providers: [ CurrencyConverterService ],
 })
 export class CurrencyConverterComponent {
-  errorMessage: string;
-  convertedAmount: ConvertedAmount;
+  value = "";
+  currency = "USD";
 
+  errorMessage: string;
+  convertOutList: ConvertOut[];
+
+  liveMode = false;
+
+  animationEnabled = true;
   animationTime = 3 * 1000;
   animationRunning = false;
 
@@ -20,24 +25,51 @@ export class CurrencyConverterComponent {
 
   constructor (private currencyConverterService: CurrencyConverterService) {}
 
-  convert(amount: string) {
-    if (!amount) { return; }
-    this.animationRunning = true;
-    var that = this;
-    setTimeout(function() {
-      that.animationRunning = false;
-    }, that.animationTime);
+  convert() {
+    if (!this.value) { return; }
+    if (!this.currency) { return; }
 
-    this.currencyConverterService.convert(amount)
+    if (this.animationEnabled) {
+      this.animationRunning = true;
+      var that = this;
+      setTimeout(function() {
+        that.animationRunning = false;
+      }, that.animationTime);
+    }
+
+    this.currencyConverterService.convert(this.value, this.currency)
       .subscribe(
         result => {
-          this.convertedAmount = result;
+          this.value = "";
+          this.convertOutList = result;
           this.errorMessage = null;
         },
         error => {
+          this.value = "";
           this.errorMessage = <any>error;
-          this.convertedAmount = null;
+          this.convertOutList = null;
         }
       );
+  }
+
+  startLiveMode() {
+    this.liveMode = true;
+    this.animationEnabled = false;
+    var that = this;
+    var run = function() {
+      if (!that.liveMode) {
+        return;
+      }
+
+      console.log("starting run");
+      that.value = (Math.random() * 100).toFixed(2);
+      that.convert();
+      setTimeout(run, 100);
+    }
+    run();
+  }
+
+  stopLiveMode() {
+    this.liveMode = false;
   }
 }

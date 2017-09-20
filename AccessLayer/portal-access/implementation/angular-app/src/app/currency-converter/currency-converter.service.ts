@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { ConvertedAmount }         from './converted-amount'
+import { ConvertOut }              from './convert-out'
 
 @Injectable()
 export class CurrencyConverterService {
@@ -20,11 +20,11 @@ export class CurrencyConverterService {
     return res.json() || {};
   }
 
-  convert(usd: string) : Observable<ConvertedAmount> {
+  convert(value: string, currency: string) : Observable<ConvertOut[]> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.currencyConverterServiceUrl, { usd }, options)
+    return this.http.post(this.currencyConverterServiceUrl, { value, currency }, options)
       .map(this.extractData)
       .catch((error:any) => Observable.throw(error.json().message + " (" + error.json().exception + ")"));
   }

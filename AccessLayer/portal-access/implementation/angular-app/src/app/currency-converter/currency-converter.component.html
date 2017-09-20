@@ -4,17 +4,28 @@
 </div>
 
 <div class="row comment">
-  <p>This example application takes your input, sends it to access layer microservice written using Spring REST (based on Spring Boot and fully managed by JLUPIN Next Server), then internally sends data to business logic microservice. The output result is table with amount you typed converted to USD, EUR, GBP.</p>
+  <p>This example application takes your input, sends it to access layer microservice written using Spring REST (based on Spring Boot and fully managed by JLUPIN Next Server), then internally sends data to business logic microservice. The output result is table with amount you typed converted to EUR, GBP, CHF.</p>
 </div>
 
 <div class="row justify-content-center form-container">
-  <form class="form-inline" #convertForm="ngForm" (ngSubmit)="convert(usd.value); usd.value=''">
+  <button *ngIf="!animationEnabled" class="btn btn-success" (click)="animationEnabled = true">Enable animation</button>
+  <button *ngIf="animationEnabled" class="btn btn-danger" (click)="animationEnabled = false">Disable animation</button>
+  <button *ngIf="!liveMode" class="btn btn-success" (click)="startLiveMode()">Start live mode</button>
+  <button *ngIf="liveMode" class="btn btn-danger" (click)="stopLiveMode()">Stop live mode</button>
+</div>
+
+<div class="row justify-content-center form-container">
+  <form class="form" #convertForm="ngForm" (ngSubmit)="convert()">
     <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon">$</div>
-        <input class="form-control" placeholder="Type in amount to convert..." pattern="\d+(\.\d{2})?" #usd/>
+      <div class="form-row">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input class="form-control" placeholder="Type in amount to convert..." pattern="\d+(\.\d{2})?"
+                 [(ngModel)]="value" name="value"/>
+          <button class="btn btn-primary" type="submit">Convert</button>
+        </div>
+
       </div>
-      <button class="btn btn-primary" type="submit">Convert</button>
     </div>
   </form>
 </div>
@@ -28,21 +39,13 @@
   <div class="micro-app"><div *ngIf="animationRunning" class="shadow"></div></div>
 </div>
 
-<div *ngIf="convertedAmount && !animationRunning" class="row justify-content-center result-container fade-in">
+<div *ngIf="convertOutList && !animationRunning" class="row justify-content-center result-container fade-in">
   <table class="table table-striped">
     <tbody>
-    <tr>
-      <th scope="row">USD</th>
-      <td>{{ convertedAmount.usd.toFixed(2) }}</td>
-    </tr>
-    <tr>
-      <th scope="row">EUR</th>
-      <td>{{ convertedAmount.eur.toFixed(2) }}</td>
-    </tr>
-    <tr>
-      <th scope="row">GBP</th>
-      <td>{{ convertedAmount.gbp.toFixed(2) }}</td>
-    </tr>
+      <tr *ngFor="let row of convertOutList">
+        <th scope="row">{{ row.currency }}</th>
+        <td>{{ row.value ? row.value.toFixed(2) : 'N/A' }}</td>
+      </tr>
     </tbody>
   </table>
 </div>

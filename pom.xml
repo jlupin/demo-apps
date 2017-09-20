@@ -36,6 +36,14 @@
         <module>BusinessLogicLayer/currency-converter-business-logic/implementation</module>
         <module>AccessLayer/portal-access/implementation</module>
         <module>integration-test</module>
+        <module>DataLayer/exchange-rates-data/interfaces</module>
+        <module>DataLayer/exchange-rates-data/implementation</module>
+        <module>BusinessLogicLayer/currency-converter-eur-business-logic/interfaces</module>
+        <module>BusinessLogicLayer/currency-converter-eur-business-logic/implementation</module>
+        <module>BusinessLogicLayer/currency-converter-gbp-business-logic/interfaces</module>
+        <module>BusinessLogicLayer/currency-converter-gbp-business-logic/implementation</module>
+        <module>BusinessLogicLayer/currency-converter-chf-business-logic/interfaces</module>
+        <module>BusinessLogicLayer/currency-converter-chf-business-logic/implementation</module>
     </modules>
 
     <properties>
@@ -43,6 +51,7 @@
         <jlupin.skipDeploy>true</jlupin.skipDeploy>
         <maven.surefire.skipTests>false</maven.surefire.skipTests>
 
+        <spring.context.version>4.3.9.RELEASE</spring.context.version>
         <maven.shade.plugin.version>3.0.0</maven.shade.plugin.version>
         <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
         <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>

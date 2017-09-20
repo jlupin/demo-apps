@@ -51,7 +51,7 @@ public class CurrencyConverterBusinessLogicTest {
     @Test
     public void exampleTest() {
         CurrencyConverterService currencyConverterService = jLupinProxyObjectProducer().produceObject(CurrencyConverterService.class);
-        BigDecimal result = currencyConverterService.convert(new BigDecimal("123.32"), Currency.EUR);
+        BigDecimal result = currencyConverterService.convert(new BigDecimal("123.32"), Currency.USD, Currency.EUR);
         System.out.println(result);
     }
 }

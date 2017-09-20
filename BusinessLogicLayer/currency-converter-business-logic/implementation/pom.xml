@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>currency-converter</name>
-    <artifactId>currency-converter-implementation</artifactId>
+    <artifactId>currency-converter-business-logic-implementation</artifactId>
 
     <properties>
         <jlupin.skipDeploy>false</jlupin.skipDeploy>
@@ -50,22 +50,33 @@
             <version>${server.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>exchange-rates-data-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.jlupin</groupId>
-                <artifactId>jlupin-next-server-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>com.jlupin</groupId>
                 <artifactId>jlupin-next-server-maven-plugin</artifactId>
                 <executions>
+                    <execution>
+                        <id>jlupin-zip</id>
+                        <goals>
+                           <goal>zip</goal>
+                        </goals>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>jlupin-deploy</id>
+                        <goals>
+                           <goal>deploy</goal>
+                        </goals>
+                        <phase>none</phase>
+                    </execution>
                     <execution>
                         <goals>
                             <goal>generate-swagger</goal>

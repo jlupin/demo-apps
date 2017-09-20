@@ -1,4 +1,4 @@
-package com.example.currency.converter.service.pojo;
+package com.example.currency.converter.controller.out;
 
 import com.example.currency.converter.common.pojo.Currency;
 
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * @author Piotr Heilman
  */
-public class ConvertResponse {
+public class ConvertOut {
     private BigDecimal value;
     private Currency currency;
 
