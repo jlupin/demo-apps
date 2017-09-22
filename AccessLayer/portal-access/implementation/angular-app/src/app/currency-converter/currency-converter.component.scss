@@ -44,203 +44,357 @@ td.label {
 }
 
 $fadeInOpacity: 0.5;
-$animationTime: 3s;
+$animationTime: 5s;
 $showTime: 1s;
 
 .architecture {
-  background: url("assets/images/background.png") no-repeat 0px 92px;
-  height: 371px;
-  width: 279px;
+  background: url("assets/images/demoapps.png") no-repeat;
+  width: 505px;
+  height: 524px;
   margin: 0px auto 30px;
-  padding: 0px 10px 0px 16px;
-  text-align: center;
+  overflow: hidden;
 
-  .computer {
-    background: url("assets/images/computer_with_arrow.png") no-repeat;
-    width: 78px;
-    height: 142px;
-    margin: 0px auto;
+  .top-row {
+    width: 505px;
+    height: 300px;
+    margin: 0px;
+    overflow: hidden;
   }
 
-  .micro-app-web {
-    background: url("assets/images/micro_app_web.png") 11px 0px no-repeat;
-    width: 145px;
-    height: 65px;
-    margin: -12px auto 0px;
+  .portal-access {
+    width: 195px;
+    height: 59px;
+    background: url("assets/images/demoapps_shadow_pa.png") no-repeat;
+    margin: 130px 0px 0px 156px;
+    opacity: 0;
 
-    .shadow {
-      background: url("assets/images/micro_app_web_shadow.png") 11px 0px no-repeat;
-      width: 145px;
-      height: 65px;
-      margin: 0px auto;
-      opacity: 0;
-
-      -webkit-animation: fade-micro-app-web $animationTime;
-         -moz-animation: fade-micro-app-web $animationTime;
-           -o-animation: fade-micro-app-web $animationTime;
-              animation: fade-micro-app-web $animationTime;
-    }
+    -webkit-animation: fade-portal-access $animationTime;
+       -moz-animation: fade-portal-access $animationTime;
+         -o-animation: fade-portal-access $animationTime;
+            animation: fade-portal-access $animationTime;
   }
 
   .main-server {
-    background: url("assets/images/main_server.png") 10px 0px no-repeat;
-    width: 142px;
-    height: 57px;
-    margin: -11px auto 0px;
+    width: 218px;
+    height: 93px;
+    background: url("assets/images/demoapps_shadow_ms.png") no-repeat;
+    margin: 14px 0px 0px 151px;
+    opacity: 0;
 
-    .shadow {
-      background: url("assets/images/main_server_shadow.png") 10px 0px no-repeat;
-      width: 142px;
-      height: 57px;
-      margin: 0px auto;
-      opacity: 0;
-
-      -webkit-animation: fade-main-server $animationTime;
-         -moz-animation: fade-main-server $animationTime;
-           -o-animation: fade-main-server $animationTime;
-              animation: fade-main-server $animationTime;
-    }
+    -webkit-animation: fade-main-server $animationTime;
+       -moz-animation: fade-main-server $animationTime;
+         -o-animation: fade-main-server $animationTime;
+            animation: fade-main-server $animationTime;
   }
 
-  .micro-app {
-    background: url("assets/images/micro_app.png") 11px 0px no-repeat;
-    width: 166px;
-    height: 64px;
-    margin: -11px auto 0px;
-
-    .shadow {
-      background: url("assets/images/micro_app_shadow.png") 11px 0px no-repeat;
-      width: 166px;
-      height: 64px;
-      margin: 0px auto;
-      opacity: 0;
-
-      -webkit-animation: fade-micro-app $animationTime;
-         -moz-animation: fade-micro-app $animationTime;
-           -o-animation: fade-micro-app $animationTime;
-              animation: fade-micro-app $animationTime;
-    }
+  .bottom-row {
+    width: 505px;
+    height: 224px;
+    margin: 0px;
+    overflow: hidden;
   }
 
-  .connector {
-    background: url("assets/images/connector.png") no-repeat;
-    width: 1px;
-    height: 23px;
-    margin: 0px auto;
+  .left-column {
+    float: left;
+    width: 201px;
+    height: 524px;
+    margin: 0px 0px 0px 63px;
   }
+
+  .right-column {
+    float: left;
+    width: 190px;
+    height: 524px;
+    margin: 0px 0px 0px 12px;
+  }
+
+  .currency-converter-eur {
+    width: 201px;
+    height: 53px;
+    background: url("assets/images/demoapps_shadow_eur.png") no-repeat;
+    margin: 27px 0px 0px 0px;
+    opacity: 0;
+
+    -webkit-animation: fade-currency-converter-eur $animationTime;
+       -moz-animation: fade-currency-converter-eur $animationTime;
+         -o-animation: fade-currency-converter-eur $animationTime;
+            animation: fade-currency-converter-eur $animationTime;
+  }
+
+  .currency-converter-gbp {
+    width: 201px;
+    height: 54px;
+    background: url("assets/images/demoapps_shadow_gbp.png") no-repeat;
+    margin: 3px 0px 0px 0px;
+    opacity: 0.5;
+    opacity: 0;
+
+    -webkit-animation: fade-currency-converter-gbp $animationTime;
+       -moz-animation: fade-currency-converter-gbp $animationTime;
+         -o-animation: fade-currency-converter-gbp $animationTime;
+            animation: fade-currency-converter-gbp $animationTime;
+  }
+
+  .currency-converter-chf {
+    width: 201px;
+    height: 54px;
+    background: url("assets/images/demoapps_shadow_chf.png") no-repeat;
+    margin: 3px 0px 0px 0px;
+    opacity: 0.5;
+    opacity: 0;
+
+    -webkit-animation: fade-currency-converter-chf $animationTime;
+       -moz-animation: fade-currency-converter-chf $animationTime;
+         -o-animation: fade-currency-converter-chf $animationTime;
+            animation: fade-currency-converter-chf $animationTime;
+  }
+
+  .exchange-rates {
+    width: 190;
+    height: 44px;
+    background: url("assets/images/demoapps_shadow_er.png") no-repeat;
+    margin: 82px 0px 0px 0px;
+    opacity: 0.5;
+    opacity: 0;
+
+    -webkit-animation: fade-exchange-rates $animationTime;
+       -moz-animation: fade-exchange-rates $animationTime;
+         -o-animation: fade-exchange-rates $animationTime;
+            animation: fade-exchange-rates $animationTime;
+  }
+
 }
 
-.fade-in {
-  -webkit-animation: fadeIn $showTime;
-     -moz-animation: fadeIn $showTime;
-       -o-animation: fadeIn $showTime;
-          animation: fadeIn $showTime;
-}
-
-@keyframes fade-micro-app-web {
+@keyframes fade-portal-access {
       0% { opacity: 0; }
-     10% { opacity: $fadeInOpacity; }
-     90% { opacity: $fadeInOpacity; }
+      5% { opacity: $fadeInOpacity; }
+     95% { opacity: $fadeInOpacity; }
     100% { opacity: 0; }
 }
-@-webkit-keyframes fade-micro-app-web {
+@-webkit-keyframes fade-portal-access {
       0% { opacity: 0; }
-     10% { opacity: $fadeInOpacity; }
-     90% { opacity: $fadeInOpacity; }
+      5% { opacity: $fadeInOpacity; }
+     95% { opacity: $fadeInOpacity; }
     100% { opacity: 0; }
 }
-@-moz-keyframes fade-micro-app-web {
+@-moz-keyframes fade-portal-access {
       0% { opacity: 0; }
-     10% { opacity: $fadeInOpacity; }
-     90% { opacity: $fadeInOpacity; }
+      5% { opacity: $fadeInOpacity; }
+     95% { opacity: $fadeInOpacity; }
     100% { opacity: 0; }
 }
-@-o-keyframes fade-micro-app-web {
+@-o-keyframes fade-portal-access {
       0% { opacity: 0; }
-     10% { opacity: $fadeInOpacity; }
-     90% { opacity: $fadeInOpacity; }
+      5% { opacity: $fadeInOpacity; }
+     95% { opacity: $fadeInOpacity; }
     100% { opacity: 0; }
 }
 
 @keyframes fade-main-server {
       0% { opacity: 0; }
-     18% { opacity: 0; }
-     28% { opacity: $fadeInOpacity; }
-     72% { opacity: $fadeInOpacity; }
-     82% { opacity: 0; }
+      5% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     30% { opacity: $fadeInOpacity; }
+     35% { opacity: 0; }
+     40% { opacity: $fadeInOpacity; }
+     60% { opacity: $fadeInOpacity; }
+     65% { opacity: 0; }
+     70% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+     95% { opacity: 0; }
     100% { opacity: 0; }
 }
 @-webkit-keyframes fade-main-server {
       0% { opacity: 0; }
-     18% { opacity: 0; }
-     28% { opacity: $fadeInOpacity; }
-     72% { opacity: $fadeInOpacity; }
-     82% { opacity: 0; }
+      5% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     30% { opacity: $fadeInOpacity; }
+     35% { opacity: 0; }
+     40% { opacity: $fadeInOpacity; }
+     60% { opacity: $fadeInOpacity; }
+     65% { opacity: 0; }
+     70% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+     95% { opacity: 0; }
     100% { opacity: 0; }
 }
 @-moz-keyframes fade-main-server {
       0% { opacity: 0; }
-     18% { opacity: 0; }
-     28% { opacity: $fadeInOpacity; }
-     72% { opacity: $fadeInOpacity; }
-     82% { opacity: 0; }
+      5% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     30% { opacity: $fadeInOpacity; }
+     35% { opacity: 0; }
+     40% { opacity: $fadeInOpacity; }
+     60% { opacity: $fadeInOpacity; }
+     65% { opacity: 0; }
+     70% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+     95% { opacity: 0; }
     100% { opacity: 0; }
 }
 @-o-keyframes fade-main-server {
       0% { opacity: 0; }
-     18% { opacity: 0; }
-     28% { opacity: $fadeInOpacity; }
-     72% { opacity: $fadeInOpacity; }
-     82% { opacity: 0; }
+      5% { opacity: 0; }
+     10% { opacity: $fadeInOpacity; }
+     30% { opacity: $fadeInOpacity; }
+     35% { opacity: 0; }
+     40% { opacity: $fadeInOpacity; }
+     60% { opacity: $fadeInOpacity; }
+     65% { opacity: 0; }
+     70% { opacity: $fadeInOpacity; }
+     90% { opacity: $fadeInOpacity; }
+     95% { opacity: 0; }
     100% { opacity: 0; }
 }
 
-@keyframes fade-micro-app {
+@keyframes fade-currency-converter-eur {
       0% { opacity: 0; }
-     36% { opacity: 0; }
-     46% { opacity: $fadeInOpacity; }
-     54% { opacity: $fadeInOpacity; }
-     64% { opacity: 0; }
+     10% { opacity: 0; }
+     15% { opacity: $fadeInOpacity; }
+     25% { opacity: $fadeInOpacity; }
+     30% { opacity: 0; }
     100% { opacity: 0; }
 }
-@-webkit-keyframes fade-micro-app {
+@-webkit-keyframes fade-currency-converter-eur {
       0% { opacity: 0; }
-     36% { opacity: 0; }
-     46% { opacity: $fadeInOpacity; }
-     54% { opacity: $fadeInOpacity; }
-     64% { opacity: 0; }
+     10% { opacity: 0; }
+     15% { opacity: $fadeInOpacity; }
+     25% { opacity: $fadeInOpacity; }
+     30% { opacity: 0; }
     100% { opacity: 0; }
 }
-@-moz-keyframes fade-micro-app {
+@-moz-keyframes fade-currency-converter-eur {
       0% { opacity: 0; }
-     36% { opacity: 0; }
-     46% { opacity: $fadeInOpacity; }
-     54% { opacity: $fadeInOpacity; }
-     64% { opacity: 0; }
+     10% { opacity: 0; }
+     15% { opacity: $fadeInOpacity; }
+     25% { opacity: $fadeInOpacity; }
+     30% { opacity: 0; }
     100% { opacity: 0; }
 }
-@-o-keyframes fade-micro-app {
+@-o-keyframes fade-currency-converter-eur {
       0% { opacity: 0; }
-     36% { opacity: 0; }
-     46% { opacity: $fadeInOpacity; }
-     54% { opacity: $fadeInOpacity; }
-     64% { opacity: 0; }
+     10% { opacity: 0; }
+     15% { opacity: $fadeInOpacity; }
+     25% { opacity: $fadeInOpacity; }
+     30% { opacity: 0; }
     100% { opacity: 0; }
 }
 
-@keyframes fadeIn {
+@keyframes fade-currency-converter-gbp {
       0% { opacity: 0; }
-    100% { opacity: 1; }
+     40% { opacity: 0; }
+     45% { opacity: $fadeInOpacity; }
+     55% { opacity: $fadeInOpacity; }
+     60% { opacity: 0; }
+    100% { opacity: 0; }
 }
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes fade-currency-converter-gbp {
       0% { opacity: 0; }
-    100% { opacity: 1; }
+     40% { opacity: 0; }
+     45% { opacity: $fadeInOpacity; }
+     55% { opacity: $fadeInOpacity; }
+     60% { opacity: 0; }
+    100% { opacity: 0; }
 }
-@-moz-keyframes fadeIn {
+@-moz-keyframes fade-currency-converter-gbp {
       0% { opacity: 0; }
-    100% { opacity: 1; }
+     40% { opacity: 0; }
+     45% { opacity: $fadeInOpacity; }
+     55% { opacity: $fadeInOpacity; }
+     60% { opacity: 0; }
+    100% { opacity: 0; }
 }
-@-o-keyframes fadeIn {
+@-o-keyframes fade-currency-converter-gbp {
       0% { opacity: 0; }
-    100% { opacity: 1; }
+     40% { opacity: 0; }
+     45% { opacity: $fadeInOpacity; }
+     55% { opacity: $fadeInOpacity; }
+     60% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes fade-currency-converter-chf {
+      0% { opacity: 0; }
+     70% { opacity: 0; }
+     75% { opacity: $fadeInOpacity; }
+     85% { opacity: $fadeInOpacity; }
+     90% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-webkit-keyframes fade-currency-converter-chr {
+      0% { opacity: 0; }
+     70% { opacity: 0; }
+     75% { opacity: $fadeInOpacity; }
+     85% { opacity: $fadeInOpacity; }
+     90% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes fade-currency-converter-chf {
+      0% { opacity: 0; }
+     70% { opacity: 0; }
+     75% { opacity: $fadeInOpacity; }
+     85% { opacity: $fadeInOpacity; }
+     90% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-o-keyframes fade-currency-converter-chf {
+      0% { opacity: 0; }
+     70% { opacity: 0; }
+     75% { opacity: $fadeInOpacity; }
+     85% { opacity: $fadeInOpacity; }
+     90% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes fade-exchange-rates {
+      0% { opacity: 0; }
+     15% { opacity: 0; }
+     20% { opacity: $fadeInOpacity; }
+     25% { opacity: 0; }
+     45% { opacity: 0; }
+     50% { opacity: $fadeInOpacity; }
+     55% { opacity: 0; }
+     75% { opacity: 0; }
+     80% { opacity: $fadeInOpacity; }
+     85% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-webkit-keyframes fade-exchange-rates {
+      0% { opacity: 0; }
+     15% { opacity: 0; }
+     20% { opacity: $fadeInOpacity; }
+     25% { opacity: 0; }
+     45% { opacity: 0; }
+     50% { opacity: $fadeInOpacity; }
+     55% { opacity: 0; }
+     75% { opacity: 0; }
+     80% { opacity: $fadeInOpacity; }
+     85% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes fade-exchange-rates {
+      0% { opacity: 0; }
+     15% { opacity: 0; }
+     20% { opacity: $fadeInOpacity; }
+     25% { opacity: 0; }
+     45% { opacity: 0; }
+     50% { opacity: $fadeInOpacity; }
+     55% { opacity: 0; }
+     75% { opacity: 0; }
+     80% { opacity: $fadeInOpacity; }
+     85% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-o-keyframes fade-exchange-rates {
+      0% { opacity: 0; }
+     15% { opacity: 0; }
+     20% { opacity: $fadeInOpacity; }
+     25% { opacity: 0; }
+     45% { opacity: 0; }
+     50% { opacity: $fadeInOpacity; }
+     55% { opacity: 0; }
+     75% { opacity: 0; }
+     80% { opacity: $fadeInOpacity; }
+     85% { opacity: 0; }
+    100% { opacity: 0; }
 }

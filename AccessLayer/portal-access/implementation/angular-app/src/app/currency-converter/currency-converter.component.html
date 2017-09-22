@@ -31,12 +31,20 @@
 </div>
 
 <div class="architecture">
-  <div class="computer"></div>
-  <div class="micro-app-web"><div *ngIf="animationRunning" class="shadow"></div></div>
-  <div class="connector"></div>
-  <div class="main-server"><div *ngIf="animationRunning" class="shadow"></div></div>
-  <div class="connector"></div>
-  <div class="micro-app"><div *ngIf="animationRunning" class="shadow"></div></div>
+  <div *ngIf="animationRunning" class="top-row">
+    <div class="portal-access"></div>
+    <div class="main-server"></div>
+  </div>
+  <div *ngIf="animationRunning" class="bottom-row">
+    <div class="left-column">
+      <div class="currency-converter-eur"></div>
+      <div class="currency-converter-gbp"></div>
+      <div class="currency-converter-chf"></div>
+    </div>
+    <div class="right-column">
+      <div class="exchange-rates"></div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="convertOutList && !animationRunning" class="row justify-content-center result-container fade-in">

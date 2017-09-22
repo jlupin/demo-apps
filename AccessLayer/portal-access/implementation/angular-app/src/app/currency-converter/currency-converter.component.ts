@@ -18,7 +18,7 @@ export class CurrencyConverterComponent {
   liveMode = false;
 
   animationEnabled = true;
-  animationTime = 3 * 1000;
+  animationTime = 5 * 1000;
   animationRunning = false;
 
   mode = 'Observable';
