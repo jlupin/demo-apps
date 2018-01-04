@@ -14,7 +14,7 @@ import { ConvertOut }              from './convert-out'
 export class CurrencyConverterService {
   constructor(private http:Http) {}
 
-  private currencyConverterServiceUrl = '/convert';
+  private currencyConverterServiceUrl = '/exchange/convert';
 
   private extractData(res: Response) {
     return res.json() || {};

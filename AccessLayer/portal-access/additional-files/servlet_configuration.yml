@@ -6,7 +6,7 @@ SERVERS:
     waitForFinishExecuteAllRequests: true
     waitToShutdownThreadsOnStop: 5000
     springBootLoaderClassName: org.springframework.boot.loader.WarLauncher
-    #contextName: webservices
+    contextName: /exchange
   TRANSMISSION:
     readTimeout: 480000
     isWaitForFinishExecuteAllRequests: false
@@ -19,13 +19,12 @@ SERVERS:
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 3600000
 PROPERTIES:
-  #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=y'
+  #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
   switchDelayTime: 1000
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000
-  expectedCheckResponseTimeInMillis: 2000
   isKeepAlive: false
   isOOBInline: false
   isTcpNoDelay: false
@@ -42,9 +41,26 @@ PROPERTIES:
   isStackDumping: true
   isArchiveOnStart: false
   startLogMode: INFO
+  isInitErrorCauseWithNetworkInformation: true
+  checkAvailableScript: 'function isAvailable(checkResponseTimeInMillis, jrmcActiveThreads, jrmcMaxThreads,
+                                                queueActiveThreads, queueMaxThreads, servletActiveThreads, servletMaxThreads,
+                           					            jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,
+                           					            jvmProcessCpuLoadInPercentage, userAvailableFlag) {
+
+                            var isAvailableByUser = Boolean(userAvailableFlag);
+                           	if(checkResponseTimeInMillis > 20000 || !isAvailableByUser) {
+                           	   return false;
+                           	}
+                           	return true;
+                           }'
 INITIALIZING_LOGGER:
   #directoryPath: '/logs/server'
   #fileName: 'file_name'
   fileExtension: 'log'
   fileSizeInMB: 20
   maxFiles: 10
+MEMORY_ERRORS:
+  isRestartOnError: true
+  howManyTimes: 4
+  percentageGrowth: 15
+  isHeapDump: true

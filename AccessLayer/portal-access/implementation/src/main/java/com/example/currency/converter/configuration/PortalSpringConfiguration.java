@@ -2,9 +2,8 @@ package com.example.currency.converter.configuration;
 
 import com.example.currency.converter.service.interfaces.CurrencyConverterService;
 import com.jlupin.impl.client.util.JLupinClientUtil;
-import com.jlupin.impl.logger.impl.log4j.JLupinLoggerOverLog4jImpl;
+import com.jlupin.impl.logger.impl.log4j.JLupinLoggerOverLog4j2Impl;
 import com.jlupin.interfaces.client.delegator.JLupinDelegator;
-import com.jlupin.interfaces.client.delegator.exception.JLupinDelegatorException;
 import com.jlupin.interfaces.client.proxy.producer.JLupinProxyObjectProducer;
 import com.jlupin.interfaces.common.enums.PortType;
 import com.jlupin.interfaces.logger.JLupinLogger;
@@ -26,49 +25,37 @@ public class PortalSpringConfiguration {
 
     @Bean
     public JLupinDelegator getJLupinDelegator() {
-        final JLupinDelegator jLupinDelegator = JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(
+        return JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(
                 HOW_OFTEN_CHECKING_SERVER_IN_MILLIS,
                 REPEATS_AMOUNT,
                 CHANGE_SERVER_INTERVAL_IN_MILLIS,
                 PortType.JLRMC
         );
-
-        try {
-            jLupinDelegator.before();
-        } catch (JLupinDelegatorException e) {
-           throw new IllegalStateException("can not execute delegator's before method caused by:", e);
-        }
-        return jLupinDelegator;
-    }
-
-    @PreDestroy
-    public void destroy() {
-        try {
-            getJLupinDelegator().after();
-        } catch (JLupinDelegatorException e) {
-            throw new IllegalStateException("can not execute delegator's after method caused by:", e);
-        }
-        JLupinClientUtil.closeResources();
     }
 
     @Bean
     public JLupinLogger getJLupinLogger() {
-           return JLupinLoggerOverLog4jImpl.getInstance();
+        return JLupinLoggerOverLog4j2Impl.getInstance();
+    }
+
+    @PreDestroy
+    public void destroy() {
+        JLupinClientUtil.closeResources();
     }
 
     @Bean
     public JLupinProxyObjectProducer getCurrencyConverterEURBusinessLogicMicroserviceProxyObjectProducer() {
-           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-eur", getJLupinDelegator(), getJLupinLogger());
+        return JLupinClientUtil.generateProxyObjectProducer("currency-converter-eur", getJLupinDelegator());
     }
 
     @Bean
     public JLupinProxyObjectProducer getCurrencyConverterGBPBusinessLogicMicroserviceProxyObjectProducer() {
-           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-gbp", getJLupinDelegator(), getJLupinLogger());
+        return JLupinClientUtil.generateProxyObjectProducer("currency-converter-gbp", getJLupinDelegator());
     }
 
     @Bean
     public JLupinProxyObjectProducer getCurrencyConverterCHFBusinessLogicMicroserviceProxyObjectProducer() {
-           return JLupinClientUtil.generateProxyObjectProducer("currency-converter-chf", getJLupinDelegator(), getJLupinLogger());
+        return JLupinClientUtil.generateProxyObjectProducer("currency-converter-chf", getJLupinDelegator());
     }
 
     @Bean(name = "currencyConverterEURService")

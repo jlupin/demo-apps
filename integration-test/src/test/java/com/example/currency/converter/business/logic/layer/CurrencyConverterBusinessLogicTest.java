@@ -2,7 +2,7 @@ package com.example.currency.converter.business.logic.layer;
 
 import com.example.currency.converter.common.pojo.Currency;
 import com.example.currency.converter.service.interfaces.CurrencyConverterService;
-import com.jlupin.common.communication.common.various.JLupinMainServerInZoneConfiguration;
+import com.jlupin.common.various.JLupinMainServerInZoneConfiguration;
 import com.jlupin.impl.client.util.JLupinClientUtil;
 import com.jlupin.impl.logger.impl.log4j.JLupinLoggerOverLog4jImpl;
 import com.jlupin.impl.serialize.JLupinFSTSerializerImpl;

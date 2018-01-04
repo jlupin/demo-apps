@@ -33,7 +33,7 @@ SERVERS:
      isDestroyThreadOnTimeout: false
      threadExecutingTimeOut: 240000
 PROPERTIES:
-  #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=y'
+  #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
   switchDelayTime: 0
@@ -53,9 +53,20 @@ PROPERTIES:
   waitForProcessStartResponseTimeInMillis: 90000
   waitForProcessDestroyResponseTimeInMillis: 30000
   isAllFilesToJVMAppClassLoader: false
-  isStackDumping: true
   isArchiveOnStart: false
   startLogMode: INFO
+  isInitErrorCauseWithNetworkInformation: true
+  checkAvailableScript: 'function isAvailable(checkResponseTimeInMillis, jrmcActiveThreads, jrmcMaxThreads,
+                                              queueActiveThreads, queueMaxThreads, servletActiveThreads, servletMaxThreads,
+                         					            jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,
+                         					            jvmProcessCpuLoadInPercentage, userAvailableFlag) {
+
+                          var isAvailableByUser = Boolean(userAvailableFlag);
+                         	if(checkResponseTimeInMillis > 20000 || !isAvailableByUser) {
+                         	   return false;
+                         	}
+                         	return true;
+                         }'
 APPLICATION:
   applicationContainerProducerClassName: 'com.example.currency.converter.configuration.CurrencyConverterGbpJLupinConfiguration'
 INITIALIZING_LOGGER:
@@ -64,3 +75,8 @@ INITIALIZING_LOGGER:
   fileExtension: 'log'
   fileSizeInMB: 20
   maxFiles: 10
+MEMORY_ERRORS:
+  isRestartOnError: true
+  howManyTimes: 4
+  percentageGrowth: 15
+  isHeapDump: true

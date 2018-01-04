@@ -81,25 +81,25 @@
                         <goals>
                             <goal>generate-swagger</goal>
                         </goals>
+                    </execution>
+                </executions>
                         <configuration>
                             <skipSwaggerGeneration>false</skipSwaggerGeneration>
                             <apiSources>
                                 <apiSource>
                                     <springmvc>false</springmvc>
                                     <locations>com.example.currency.converter.service</locations>
-                                    <basePath>/${artifactId}</basePath>
+                                    <basePath>/currency-converter-chf</basePath>
                                     <schemes>http</schemes>
                                     <host>localhost:8082</host>
                                     <info>
-                                        <title>Currency Converter API</title>
+                                        <title>Currency Converter CHF API</title>
                                         <version>v1</version>
                                     </info>
-                                    <swaggerDirectory>target/${artifactId}</swaggerDirectory>
+                                    <swaggerDirectory>target/currency-converter-chf</swaggerDirectory>
                                 </apiSource>
                             </apiSources>
                         </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
