@@ -47,7 +47,7 @@
     </modules>
 
     <properties>
-        <server.version>1.4.1.0-RC1</server.version>
+        <server.version>1.4.1.0-RC2</server.version>
         <jlupin.skipDeploy>true</jlupin.skipDeploy>
         <maven.surefire.skipTests>false</maven.surefire.skipTests>
 

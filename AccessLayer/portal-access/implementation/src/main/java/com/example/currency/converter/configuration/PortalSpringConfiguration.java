@@ -17,7 +17,10 @@ import javax.annotation.PreDestroy;
  * @author Piotr Heilman
  */
 @Configuration
-@ComponentScan("com.example.currency.converter")
+@ComponentScan({
+        "com.example.currency.converter",
+        "com.jlupin.servlet.monitor.configuration"
+})
 public class PortalSpringConfiguration {
     private static final int HOW_OFTEN_CHECKING_SERVER_IN_MILLIS = 5000;
     private static final int REPEATS_AMOUNT = 3;
