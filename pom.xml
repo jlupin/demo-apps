@@ -47,7 +47,7 @@
     </modules>
 
     <properties>
-        <server.version>1.4.1.0-RC2</server.version>
+        <server.version>1.4.1.0-SNAPSHOT-1</server.version>
         <jlupin.skipDeploy>true</jlupin.skipDeploy>
         <maven.surefire.skipTests>false</maven.surefire.skipTests>
 
@@ -130,6 +130,9 @@
                             <goals>
                                 <goal>deploy</goal>
                             </goals>
+                            <configuration>
+                                <zipFile>/home/piotr/Workspace/projects/core/demo-apps/target/${project.name}.zip</zipFile>
+                            </configuration>
                         </execution>
                         <execution>
                             <id>jlupin-generate-swagger</id>

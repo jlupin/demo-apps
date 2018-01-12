@@ -110,6 +110,9 @@
                         <goals>
                             <goal>deploy</goal>
                         </goals>
+                        <configuration>
+                            <zipFile>/home/piotr/Workspace/projects/core/demo-apps/target/${project.name}.zip</zipFile>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
