@@ -8,11 +8,9 @@ import com.jlupin.impl.util.JLupinUtil;
 import com.jlupin.interfaces.logger.JLupinLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +31,70 @@ public class ConverterController {
     private CurrencyConverterService currencyConverterCHFService;
     @Autowired
     private JLupinLogger jLupinLogger;
+    @Autowired
+    private ServletContext servletContext;
+
+    @GetMapping("/")
+    public String index() {
+        final String baseHref = servletContext.getContextPath();
+
+        final String imagesStyles =
+                "<style>" +
+                "    .header-container .logo {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/jlupin_next_server_logo.png\") !important;\n" +
+                "    }\n" +
+                "    \n" +
+                "    .architecture {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps.png\") !important;\n" +
+                "    }\n" +
+                "    .architecture .portal-access {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps_shadow_pa.png\") !important;\n" +
+                "    }\n" +
+                "    .architecture .main-server {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps_shadow_ms.png\") !important;\n" +
+                "    }\n" +
+                "    .architecture .currency-converter-eur {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps_shadow_eur.png\") !important;\n" +
+                "    }\n" +
+                "    .architecture .currency-converter-gbp {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps_shadow_gbp.png\") !important;\n" +
+                "    }\n" +
+                "    .architecture .currency-converter-chf {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps_shadow_chf.png\") !important;\n" +
+                "    }\n" +
+                "    .architecture .exchange-rates {\n" +
+                "      background: url(\"" + baseHref + "/assets/images/demoapps_shadow_er.png\") !important;\n" +
+                "    }\n" +
+                "</style>";
+
+        return "<!doctype html>\n" +
+               "<html>\n" +
+               "<head>\n" +
+               "    <base href=\"" + baseHref + "\">\n" +
+               "    <meta charset=\"utf-8\">\n" +
+               "    <title>Currency converter</title>\n" +
+               "\n" +
+               "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+               "    <link rel=\"icon\" type=\"image/x-icon\" href=\"" + baseHref + "/favicon.ico\">\n" +
+               "    <link rel=\"stylesheet\" href=\"" + baseHref + "/assets/external/bootstrap.min.css\">\n" +
+               "\n" +
+               imagesStyles + "\n" +
+               "</head>\n" +
+               "<body id=\"body\">\n" +
+               "    <div class=\"container\">\n" +
+               "        <app-root><p class=\"text-center\">Loading...</p></app-root>\n" +
+               "    </div>\n" +
+               "\n" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/assets/external/jquery-3.1.1.slim.min.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/assets/external/tether.min.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/assets/external/bootstrap.min.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/inline.bundle.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/polyfills.bundle.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/styles.bundle.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/vendor.bundle.js\"></script>" +
+               "    <script type=\"text/javascript\" src=\"" + baseHref + "/main.bundle.js\"></script>" +
+               "</html>";
+    }
 
     @CrossOrigin
     @PostMapping("/convert")

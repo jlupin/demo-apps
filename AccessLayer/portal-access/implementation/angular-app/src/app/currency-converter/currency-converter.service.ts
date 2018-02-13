@@ -12,9 +12,14 @@ import { ConvertOut }              from './convert-out'
 
 @Injectable()
 export class CurrencyConverterService {
-  constructor(private http:Http) {}
+  private pref = "";
+  private currencyConverterServiceUrl = '/convert';
 
-  private currencyConverterServiceUrl = '/exchange/convert';
+  constructor(private http:Http) {
+    let fullPath = window.location.pathname;
+    let res = fullPath.split("/");
+    this.pref = res.length > 2 ? "/" + res[1] : "";
+  }
 
   private extractData(res: Response) {
     return res.json() || {};
@@ -24,7 +29,7 @@ export class CurrencyConverterService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.currencyConverterServiceUrl, { value, currency }, options)
+    return this.http.post(this.pref + this.currencyConverterServiceUrl, { value, currency }, options)
       .map(this.extractData)
       .catch((error:any) => Observable.throw(error.json().message + " (" + error.json().exception + ")"));
   }

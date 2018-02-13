@@ -4,20 +4,63 @@
 <head>
   <meta charset="utf-8">
   <title>Currency converter</title>
-  <base href="/exchange/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <link rel="stylesheet" href="/exchange/assets/external/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
-<body>
+<body id="body">
   <div class="container">
     <app-root><p class="text-center">Loading...</p></app-root>
-
-    <script src="/exchange/assets/external/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="/exchange/assets/external/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="/exchange/assets/external/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </div>
+
+  <script type="text/javascript">
+    function loadAngular() {
+      var pref = window.location.pathname.split("/").length > 2 ? "/" + window.location.pathname.split("/")[1] : "";
+
+      var baseElements = document.head.getElementsByTagName("base");
+      for (var i = 0; i < baseElements.length; i += 1) {
+        document.head.removeChild(baseElements[i]);
+      }
+
+      var baseElm = document.createElement("base");
+      baseElm.href = pref;
+      document.head.appendChild(baseElm);
+
+      var links = [
+        "assets/external/bootstrap.min.css"
+      ];
+
+      for (var i = 0; i < links.length; i += 1) {
+        var link = links[i];
+        var linkElm = document.createElement("link");
+        linkElm.rel= "stylesheet";
+        linkElm.href = pref + "/" + link;
+        document.head.appendChild(linkElm);
+      };
+
+      var scripts = [
+        "assets/external/jquery-3.1.1.slim.min.js",
+        "assets/external/tether.min.js",
+        "assets/external/bootstrap.min.js",
+        "inline.bundle.js",
+        "polyfills.bundle.js",
+        "styles.bundle.js",
+        "vendor.bundle.js",
+        "main.bundle.js"
+      ];
+
+      for (var i = 0; i < scripts.length; i += 1) {
+        var script = scripts[i];
+        setTimeout(function(script) {
+          var jsElm = document.createElement("script");
+          jsElm.type = "text/javascript";
+          jsElm.src = pref + "/" + script;
+          document.body.appendChild(jsElm);
+        }, i * 1000, script);
+      };
+    };
+
+    loadAngular();
+  </script>
 </body>
 </html>
