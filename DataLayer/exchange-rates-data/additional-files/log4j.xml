@@ -20,7 +20,7 @@
 
     <!-- A time/startCommandExecuteDate based rolling appender -->
     <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="../logs/server/microservice/exchange-rates/microservice.log"/>
+        <param name="File" value="../logs/microservice/exchange-rates/microservice.log"/>
         <param name="Append" value="true"/>
 
         <!-- Rollover at the top of each hour -->
