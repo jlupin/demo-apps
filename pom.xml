@@ -47,7 +47,7 @@
     </modules>
 
     <properties>
-        <server.version>1.4.1.0-RC3</server.version>
+        <server.version>1.4.1.0-RC4</server.version>
         <jlupin.skipDeploy>true</jlupin.skipDeploy>
         <maven.surefire.skipTests>false</maven.surefire.skipTests>
 
@@ -55,7 +55,7 @@
         <maven.shade.plugin.version>3.0.0</maven.shade.plugin.version>
         <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
         <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
-        <jlupin.next.server.maven.plugin.version>1.0.2</jlupin.next.server.maven.plugin.version>
+        <jlupin.next.server.maven.plugin.version>1.1.0</jlupin.next.server.maven.plugin.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

@@ -13,10 +13,6 @@
     <name>currency-converter</name>
     <artifactId>currency-converter-business-logic-implementation</artifactId>
 
-    <properties>
-        <jlupin.skipDeploy>false</jlupin.skipDeploy>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -50,6 +46,7 @@
             <version>${server.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>exchange-rates-data-interfaces</artifactId>
@@ -66,14 +63,14 @@
                     <execution>
                         <id>jlupin-zip</id>
                         <goals>
-                           <goal>zip</goal>
+                            <goal>zip</goal>
                         </goals>
                         <phase>none</phase>
                     </execution>
                     <execution>
                         <id>jlupin-deploy</id>
                         <goals>
-                           <goal>deploy</goal>
+                            <goal>deploy</goal>
                         </goals>
                         <phase>none</phase>
                     </execution>
@@ -83,23 +80,23 @@
                         </goals>
                     </execution>
                 </executions>
-                        <configuration>
-                            <skipSwaggerGeneration>false</skipSwaggerGeneration>
-                            <apiSources>
-                                <apiSource>
-                                    <springmvc>false</springmvc>
-                                    <locations>com.example.currency.converter.service</locations>
-                                    <basePath>/currency-converter-chf</basePath>
-                                    <schemes>http</schemes>
-                                    <host>localhost:8082</host>
-                                    <info>
-                                        <title>Currency Converter CHF API</title>
-                                        <version>v1</version>
-                                    </info>
-                                    <swaggerDirectory>target/currency-converter-chf</swaggerDirectory>
-                                </apiSource>
-                            </apiSources>
-                        </configuration>
+                <configuration>
+                    <skipSwaggerGeneration>false</skipSwaggerGeneration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>false</springmvc>
+                            <locations>com.example.currency.converter.service</locations>
+                            <basePath>/currency-converter-chf</basePath>
+                            <schemes>http</schemes>
+                            <host>localhost:8082</host>
+                            <info>
+                                <title>Currency Converter CHF API</title>
+                                <version>v1</version>
+                            </info>
+                            <swaggerDirectory>target/currency-converter-chf</swaggerDirectory>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
