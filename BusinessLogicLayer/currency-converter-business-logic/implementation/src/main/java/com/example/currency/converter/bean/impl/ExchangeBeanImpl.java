@@ -5,7 +5,8 @@ import com.example.currency.converter.bean.interfaces.ExchangeBean;
 import com.example.currency.converter.common.pojo.Currency;
 import com.example.currency.converter.common.pojo.CurrencyConversionPair;
 import com.example.currency.converter.service.interfaces.ExchangeRatesService;
-import com.jlupin.interfaces.logger.JLupinLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,16 +24,15 @@ import java.util.Properties;
  */
 @Service(value = "exchangeBean")
 public class ExchangeBeanImpl implements ExchangeBean {
-    private final String SAFE_RATES_PROPERTIES_FILE_NAME = "safe_rates.properties";
+    private final static Logger logger = LoggerFactory.getLogger(ExchangeBeanImpl.class);
+    private final static String SAFE_RATES_PROPERTIES_FILE_NAME = "safe_rates.properties";
     private Map<CurrencyConversionPair, Double> safeRates;
 
     @Autowired
     private ExchangeRatesService exchangeRatesService;
-    private JLupinLogger logger;
 
-    public ExchangeBeanImpl(@Autowired JLupinLogger logger) {
+    public ExchangeBeanImpl() {
         this.safeRates = new HashMap<>();
-        this.logger = logger;
         initRates();
     }
 

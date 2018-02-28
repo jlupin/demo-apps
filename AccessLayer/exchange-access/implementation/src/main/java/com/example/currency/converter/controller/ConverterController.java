@@ -5,7 +5,8 @@ import com.example.currency.converter.controller.in.ConvertIn;
 import com.example.currency.converter.controller.out.ConvertOut;
 import com.example.currency.converter.service.interfaces.CurrencyConverterService;
 import com.jlupin.impl.util.JLupinUtil;
-import com.jlupin.interfaces.logger.JLupinLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ import java.util.List;
  */
 @RestController
 public class ConverterController {
+    private final static Logger logger = LoggerFactory.getLogger(ConverterController.class);
+
     @Autowired
     @Qualifier("currencyConverterEURService")
     private CurrencyConverterService currencyConverterEURService;
@@ -29,8 +32,6 @@ public class ConverterController {
     @Autowired
     @Qualifier("currencyConverterCHFService")
     private CurrencyConverterService currencyConverterCHFService;
-    @Autowired
-    private JLupinLogger jLupinLogger;
     @Autowired
     private ServletContext servletContext;
 
@@ -122,7 +123,7 @@ public class ConverterController {
                         break;
                 }
             } catch (Throwable th) {
-                jLupinLogger.error("an error occurred caused by:" + JLupinUtil.getHighestMessageFromThrowable(th), th);
+                logger.error("an error occurred caused by:" + JLupinUtil.getHighestMessageFromThrowable(th), th);
             }
             subResult.setValue(convertedAmount);
 

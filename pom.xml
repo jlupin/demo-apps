@@ -34,7 +34,7 @@
         <module>common-pojo</module>
         <module>BusinessLogicLayer/currency-converter-business-logic/interfaces</module>
         <module>BusinessLogicLayer/currency-converter-business-logic/implementation</module>
-        <module>AccessLayer/portal-access/implementation</module>
+        <module>AccessLayer/exchange-access/implementation</module>
         <module>integration-test</module>
         <module>DataLayer/exchange-rates-data/interfaces</module>
         <module>DataLayer/exchange-rates-data/implementation</module>
@@ -56,6 +56,8 @@
         <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
         <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
         <jlupin.next.server.maven.plugin.version>1.1.0</jlupin.next.server.maven.plugin.version>
+        <slf4j.version>1.8.0-alpha2</slf4j.version>
+        <log4j.slf4j.bridge.version>2.10.0</log4j.slf4j.bridge.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
