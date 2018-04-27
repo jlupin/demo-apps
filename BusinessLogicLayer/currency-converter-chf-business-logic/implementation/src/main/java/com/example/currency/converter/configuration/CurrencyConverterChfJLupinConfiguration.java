@@ -16,7 +16,7 @@ public class CurrencyConverterChfJLupinConfiguration extends JLupinAbstractAppli
         return new JLupinAbstractSpringApplicationContainer() {
             @Override
             public AbstractApplicationContext getAbstractApplicationContext() {
-                return new AnnotationConfigApplicationContext(CurrencyConverterBusinessLogicSpringConfiguration.class);
+                return new AnnotationConfigApplicationContext(CurrencyConverterChfSpringConfiguration.class);
             }
         };
     }

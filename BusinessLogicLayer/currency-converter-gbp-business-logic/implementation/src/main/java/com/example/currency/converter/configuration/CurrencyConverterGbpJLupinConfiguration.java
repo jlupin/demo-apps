@@ -16,7 +16,7 @@ public class CurrencyConverterGbpJLupinConfiguration extends JLupinAbstractAppli
         return new JLupinAbstractSpringApplicationContainer() {
             @Override
             public AbstractApplicationContext getAbstractApplicationContext() {
-                return new AnnotationConfigApplicationContext(CurrencyConverterBusinessLogicSpringConfiguration.class);
+                return new AnnotationConfigApplicationContext(CurrencyConverterGbpSpringConfiguration.class);
             }
         };
     }

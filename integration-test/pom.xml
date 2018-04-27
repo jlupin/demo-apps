@@ -40,7 +40,21 @@
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
-            <artifactId>currency-converter-business-logic-interfaces</artifactId>
+            <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>currency-converter-eur-business-logic-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>currency-converter-gbp-business-logic-interfaces</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>

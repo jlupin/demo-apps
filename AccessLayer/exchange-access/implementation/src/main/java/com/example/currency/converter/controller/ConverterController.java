@@ -3,7 +3,9 @@ package com.example.currency.converter.controller;
 import com.example.currency.converter.common.pojo.Currency;
 import com.example.currency.converter.controller.in.ConvertIn;
 import com.example.currency.converter.controller.out.ConvertOut;
-import com.example.currency.converter.service.interfaces.CurrencyConverterService;
+import com.example.currency.converter.service.interfaces.CurrencyConverterChfService;
+import com.example.currency.converter.service.interfaces.CurrencyConverterEurService;
+import com.example.currency.converter.service.interfaces.CurrencyConverterGbpService;
 import com.jlupin.impl.util.JLupinUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +26,14 @@ public class ConverterController {
     private final static Logger logger = LoggerFactory.getLogger(ConverterController.class);
 
     @Autowired
-    @Qualifier("currencyConverterEURService")
-    private CurrencyConverterService currencyConverterEURService;
+    @Qualifier("currencyConverterEurService")
+    private CurrencyConverterEurService currencyConverterEURService;
     @Autowired
-    @Qualifier("currencyConverterGBPService")
-    private CurrencyConverterService currencyConverterGBPService;
+    @Qualifier("currencyConverterGbpService")
+    private CurrencyConverterGbpService currencyConverterGBPService;
     @Autowired
-    @Qualifier("currencyConverterCHFService")
-    private CurrencyConverterService currencyConverterCHFService;
+    @Qualifier("currencyConverterChfService")
+    private CurrencyConverterChfService currencyConverterCHFService;
     @Autowired
     private ServletContext servletContext;
 

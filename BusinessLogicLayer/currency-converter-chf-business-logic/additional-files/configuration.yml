@@ -25,21 +25,28 @@ SERVERS:
      readTimeout: 480000
      isWaitForFinishExecuteAllRequests: true
      waitToShutdownThreadsOnStop: 60000
-     backlog: 0
-     receiveBufferSize: 0
+     backlog: 1024
+     receiveBufferSize: 1024
      isReuseAddress: false
      threadPoolSize: 128
      isLogPeriodicOnDebug: true
      isDestroyThreadOnTimeout: false
      threadExecutingTimeOut: 240000
+ENTRY_POINTS:
+  QUEUE:
+     threadAmount: 512
+     howOftenCheckingServerInMillis: 5000
+     repeatsAmount: 4
+     timeToWaitBetweenRepeatProbeInMillis: 1000
 PROPERTIES:
   #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
+  externalPort: '8001'
+  version: '1.0'
   switchDelayTime: 0
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000
-  expectedCheckResponseTimeInMillis: 2000
   isKeepAlive: false
   isOOBInline: false
   isTcpNoDelay: false

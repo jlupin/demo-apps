@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,34 +16,10 @@ import java.util.List;
 @Configuration
 @ComponentScan("com.example.currency.converter")
 public class ExchangeRatesSpringConfiguration {
-    private static final int HOW_OFTEN_CHECKING_SERVER_IN_MILLIS = 5000;
-    private static final int REPEATS_AMOUNT = 3;
-    private static final int CHANGE_SERVER_INTERVAL_IN_MILLIS = 5000;
-
     @Bean
     public JLupinDelegator getJLupinDelegator() {
-        return JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(
-                HOW_OFTEN_CHECKING_SERVER_IN_MILLIS,
-                REPEATS_AMOUNT,
-                CHANGE_SERVER_INTERVAL_IN_MILLIS,
-                PortType.JLRMC
-        );
+        return JLupinClientUtil.generateInnerMicroserviceLoadBalancerDelegator(PortType.JLRMC);
     }
-
-    @PreDestroy
-    public void destroy() {
-        JLupinClientUtil.closeResources();
-    }
-
-    // @Bean
-    // public JLupinProxyObjectProducer getExampleMicroserviceProxyObjectProducer() {
-    //        return JLupinClientUtil.generateProxyObjectProducer("example-microservice", getJLupinDelegator());
-    // }
-
-    // @Bean(name = "exampleService")
-    // public ExampleService getExampleService() {
-    //     return getExampleMicroserviceProxyObjectProducer().produceObject(ExampleService.class);
-    // }
 
     @Bean(name = "jLupinRegularExpressionToRemotelyEnabled")
     public List getRemotelyBeanList() {

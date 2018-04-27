@@ -36,8 +36,8 @@
     </pluginRepositories>
 
     <properties>
-        <server.version>1.4.1.0-RC4</server.version>
-        <jlupin.next.server.maven.plugin.version>1.1.0</jlupin.next.server.maven.plugin.version>
+        <server.version>1.4.1.0-SNAPSHOT-7</server.version>
+        <jlupin.next.server.maven.plugin.version>1.1.2-SNAPSHOT-1</jlupin.next.server.maven.plugin.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -54,7 +54,7 @@
 
         <dependency>
             <groupId>com.jlupin</groupId>
-            <artifactId>jlupin-servlet-monitor</artifactId>
+            <artifactId>jlupin-spring-boot-1-servlet-monitor</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -86,7 +86,19 @@
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
-            <artifactId>currency-converter-business-logic-interfaces</artifactId>
+            <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>currency-converter-eur-business-logic-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>currency-converter-gbp-business-logic-interfaces</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
