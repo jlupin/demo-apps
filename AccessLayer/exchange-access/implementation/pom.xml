@@ -36,8 +36,8 @@
     </pluginRepositories>
 
     <properties>
-        <server.version>1.4.1.0-SNAPSHOT-7</server.version>
-        <jlupin.next.server.maven.plugin.version>1.1.2-SNAPSHOT-1</jlupin.next.server.maven.plugin.version>
+        <server.version>1.4.1.0-RC5</server.version>
+        <jlupin.next.server.maven.plugin.version>1.1.2</jlupin.next.server.maven.plugin.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
