@@ -55,7 +55,10 @@ PROPERTIES:
   receiveBufferSize: 0
   soLinger: 0
   trafficClass: 0
-  #startProcessCommand: c:\\jvm\\bin\\java.exe -Xms128M -Xmx256M - for custom path to JVM
+  #javaExecutablePath: 'c:\\jvm\\bin\\java.exe'
+  #additionalClassPath: 'c:\\temp\\*'
+  isStartOnMainServerInitialize: true
+  priorityStartOnMainServerInitialize: 4
   waitForProcessInitResponseTimeInMillis: 90000
   waitForProcessStartResponseTimeInMillis: 90000
   waitForProcessDestroyResponseTimeInMillis: 30000
@@ -87,3 +90,10 @@ MEMORY_ERRORS:
   howManyTimes: 4
   percentageGrowth: 15
   isHeapDump: true
+THREAD_POOLS:
+  THREAD_POOL_1:
+    size: 8
+    waitingTimeForTasksCompletionInMillis: 10000
+  #THREAD_POOL_2:
+  #  size: 8
+  #  waitingTimeForTasksCompletionInMillis: 10000

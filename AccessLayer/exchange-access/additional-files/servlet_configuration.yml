@@ -22,7 +22,7 @@ PROPERTIES:
   #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx192M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
-  externalPort: '8001'
+  externalPort: '8000'
   version: '1.0'
   switchDelayTime: 1000
   connectionSocketTimeoutInMillis: 1000
@@ -35,7 +35,10 @@ PROPERTIES:
   receiveBufferSize: 0
   soLinger: 0
   trafficClass: 0
-  #startProcessCommand: c:\\jvm\\bin\\java.exe -Xms128M -Xmx256M - for custom path to JVM
+  #javaExecutablePath: 'c:\\jvm\\bin\\java.exe'
+  #additionalClassPath: 'c:\\temp\\*'
+  isStartOnMainServerInitialize: true
+  priorityStartOnMainServerInitialize: 4
   waitForProcessInitResponseTimeInMillis: 90000
   waitForProcessStartResponseTimeInMillis: 90000
   waitForProcessDestroyResponseTimeInMillis: 30000
@@ -66,3 +69,10 @@ MEMORY_ERRORS:
   howManyTimes: 4
   percentageGrowth: 15
   isHeapDump: true
+THREAD_POOLS:
+  THREAD_POOL_1:
+    size: 8
+    waitingTimeForTasksCompletionInMillis: 10000
+  #THREAD_POOL_2:
+  #  size: 8
+  #  waitingTimeForTasksCompletionInMillis: 10000
