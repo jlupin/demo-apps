@@ -130,6 +130,7 @@
                             <goal>zip</goal>
                         </goals>
                         <configuration>
+                            <includeDependenciesInZip>false</includeDependenciesInZip>
                             <additionalFilesDirectories>
                                 <param>../additional-files</param>
                             </additionalFilesDirectories>
