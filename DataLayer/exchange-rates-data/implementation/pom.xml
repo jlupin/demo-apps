@@ -55,10 +55,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>com.jlupin</groupId>
                 <artifactId>jlupin-next-server-maven-plugin</artifactId>
             </plugin>

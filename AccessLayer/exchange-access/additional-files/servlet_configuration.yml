@@ -7,6 +7,8 @@ SERVERS:
     waitToShutdownThreadsOnStop: 5000
     springBootLoaderClassName: org.springframework.boot.loader.WarLauncher
     contextName: /exchange
+    isStartOnMainServerInitialize: true
+    httpStickySession: false
   TRANSMISSION:
     readTimeout: 480000
     isWaitForFinishExecuteAllRequests: false
@@ -18,6 +20,7 @@ SERVERS:
     isLogPeriodicOnDebug: true
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 3600000
+    isStartOnMainServerInitialize: true
 PROPERTIES:
   #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx192M' #jvmOptions_2 - default the same as jvmOptions_1

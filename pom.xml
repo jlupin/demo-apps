@@ -45,7 +45,7 @@
     </modules>
 
     <properties>
-        <server.version>1.4.1.0-RC6</server.version>
+        <server.version>1.4.1.0-SNAPSHOT-8</server.version>
         <jlupin.skipDeploy>true</jlupin.skipDeploy>
         <maven.surefire.skipTests>false</maven.surefire.skipTests>
 
@@ -83,31 +83,6 @@
 
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-shade-plugin</artifactId>
-                    <version>${maven.shade.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>include-all-artifacts-with-same-group-id</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>shade</goal>
-                            </goals>
-                            <configuration>
-                                <filters>
-                                    <filter>
-                                        <artifact>${project.groupId}:*</artifact>
-                                        <includes>
-                                            <include>**</include>
-                                        </includes>
-                                    </filter>
-                                </filters>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
                 <plugin>
                     <groupId>com.jlupin</groupId>
                     <artifactId>jlupin-next-server-maven-plugin</artifactId>
