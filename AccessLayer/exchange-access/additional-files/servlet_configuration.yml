@@ -50,6 +50,10 @@ PROPERTIES:
   isArchiveOnStart: false
   startLogMode: INFO
   isInitErrorCauseWithNetworkInformation: true
+  isJmxEnabled: true
+  jmxOptions: '-Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
+  jmxPrimaryPort: -1
+  jmxSecondaryPort: -1
   checkAvailableScript: 'function isAvailable(checkResponseTimeInMillis, jrmcActiveThreads, jrmcMaxThreads,
                                                 queueActiveThreads, queueMaxThreads, servletActiveThreads, servletMaxThreads,
                            					    jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,

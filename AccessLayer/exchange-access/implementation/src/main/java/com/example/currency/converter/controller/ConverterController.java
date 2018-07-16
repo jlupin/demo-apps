@@ -44,7 +44,7 @@ public class ConverterController {
         final String imagesStyles =
                 "<style>" +
                 "    .header-container .logo {\n" +
-                "      background: url(\"" + baseHref + "/assets/images/jlupin_next_server_logo.png\") !important;\n" +
+                "      background: url(\"" + baseHref + "/assets/images/jlupin_platform_logo.png\") !important;\n" +
                 "    }\n" +
                 "    \n" +
                 "    .architecture {\n" +
