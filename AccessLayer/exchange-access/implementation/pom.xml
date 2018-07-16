@@ -13,7 +13,7 @@
     <artifactId>exchange-access-implementation</artifactId>
     <name>exchange</name>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.5.0.0</version>
 
     <repositories>
         <!-- Repository is also accessible using https connection: -->
@@ -36,11 +36,15 @@
     </pluginRepositories>
 
     <properties>
-        <server.version>1.4.1.0-SNAPSHOT-8</server.version>
-        <jlupin.next.server.maven.plugin.version>1.1.2</jlupin.next.server.maven.plugin.version>
+        <jlupin.platform.version>1.4.1.0-SNAPSHOT-8</jlupin.platform.version>
+        <jlupin.platform.maven.plugin.version>1.5.0.0</jlupin.platform.maven.plugin.version>
+        <jlupin.servlet.monitor.version>1.5.0.0</jlupin.servlet.monitor.version>
+        <zip.directory>../../../target</zip.directory>
+        <jlupin.zipFile>${project.basedir}/${zip.directory}/${project.artifactId}.zip</jlupin.zipFile>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
     </properties>
 
     <dependencies>
@@ -48,14 +52,14 @@
         <dependency>
             <groupId>com.jlupin</groupId>
             <artifactId>jlupin-client-assembly</artifactId>
-            <version>${server.version}</version>
+            <version>${jlupin.platform.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.jlupin</groupId>
             <artifactId>jlupin-spring-boot-1-servlet-monitor</artifactId>
-            <version>1.0.0</version>
+            <version>${jlupin.servlet.monitor.version}</version>
         </dependency>
 
         <dependency>
@@ -87,19 +91,19 @@
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.5.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-eur-business-logic-interfaces</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.5.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-gbp-business-logic-interfaces</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.5.0.0</version>
         </dependency>
     </dependencies>
 
@@ -121,8 +125,8 @@
 
             <plugin>
                 <groupId>com.jlupin</groupId>
-                <artifactId>jlupin-next-server-maven-plugin</artifactId>
-                <version>${jlupin.next.server.maven.plugin.version}</version>
+                <artifactId>jlupin-platform-maven-plugin</artifactId>
+                <version>${jlupin.platform.maven.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>jlupin-zip</id>
@@ -131,6 +135,7 @@
                         </goals>
                         <configuration>
                             <includeDependenciesInZip>false</includeDependenciesInZip>
+                            <outputFileDirectory>${zip.directory}</outputFileDirectory>
                             <additionalFilesDirectories>
                                 <param>../additional-files</param>
                             </additionalFilesDirectories>
@@ -142,9 +147,6 @@
                         <goals>
                             <goal>deploy</goal>
                         </goals>
-                        <configuration>
-                            <zipFile>/home/piotr/Workspace/projects/core/demo-apps/target/${project.name}.zip</zipFile>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

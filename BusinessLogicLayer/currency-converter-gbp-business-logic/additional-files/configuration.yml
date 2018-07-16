@@ -37,16 +37,16 @@ SERVERS:
     isStartOnMainServerInitialize: true
 ENTRY_POINTS:
   QUEUE:
-     threadAmount: 512
-     howOftenCheckingServerInMillis: 5000
-     repeatsAmount: 4
-     timeToWaitBetweenRepeatProbeInMillis: 1000
+    threadAmount: 512
+    howOftenCheckingServerInMillis: 5000
+    repeatsAmount: 4
+    timeToWaitBetweenRepeatProbeInMillis: 1000
 PROPERTIES:
   #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
-  externalPort: '8001'
-  version: '1.0'
+  externalPort: '8000'
+  version: '1.5.0.0'
   switchDelayTime: 0
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000
@@ -71,9 +71,8 @@ PROPERTIES:
   isInitErrorCauseWithNetworkInformation: true
   checkAvailableScript: 'function isAvailable(checkResponseTimeInMillis, jrmcActiveThreads, jrmcMaxThreads,
                                               queueActiveThreads, queueMaxThreads, servletActiveThreads, servletMaxThreads,
-                         					            jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,
-                         					            jvmProcessCpuLoadInPercentage, userAvailableFlag) {
-
+                         					  jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,
+                         					  jvmProcessCpuLoadInPercentage, userAvailableFlag) {
                           var isAvailableByUser = Boolean(userAvailableFlag);
                          	if(checkResponseTimeInMillis > 20000 || !isAvailableByUser) {
                          	   return false;
