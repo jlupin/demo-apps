@@ -11,7 +11,7 @@
    | website: https://logging.apache.org/log4j/2.x/index.html
 -->
 
-<Configuration status="WARN">
+<Configuration status="WARN" dest="errors/currency-converter-eur_log4j2_status.log">
     <!-- Extract log directory and file name into variables -->
     <Properties>
         <Property name="logDirectory">../logs/microservice/currency-converter-eur</Property>
@@ -44,6 +44,7 @@
                 <!-- Rollover if file size is greater than 200 MB -->
                 <!-- <SizeBasedTriggeringPolicy size="200 MB"/> -->
             </Policies>
+            <CreateOnDemand>true</CreateOnDemand>
 
             <!-- Keep last 10 log files -->
             <!-- More configuration https://logging.apache.org/log4j/2.x/manual/appenders.html#DefaultRolloverStrategy -->

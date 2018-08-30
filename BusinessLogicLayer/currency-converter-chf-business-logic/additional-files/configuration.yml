@@ -3,10 +3,10 @@ SERVERS:
     readTimeout: 480000
     isWaitForFinishExecuteAllRequests: true
     waitToShutdownThreadsOnStop: 60000
-    backlog: 0
+    backlog: 256
     receiveBufferSize: 0
     isReuseAddress: false
-    threadPoolSize: 128
+    threadPoolSize: 256
     isLogPeriodicOnDebug: true
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 240000
@@ -27,8 +27,8 @@ SERVERS:
     readTimeout: 480000
     isWaitForFinishExecuteAllRequests: true
     waitToShutdownThreadsOnStop: 60000
-    backlog: 1024
-    receiveBufferSize: 1024
+    backlog: 256
+    receiveBufferSize: 256
     isReuseAddress: false
     threadPoolSize: 128
     isLogPeriodicOnDebug: true
@@ -37,7 +37,7 @@ SERVERS:
     isStartOnMainServerInitialize: true
 ENTRY_POINTS:
   QUEUE:
-    threadAmount: 512
+    threadAmount: 128
     howOftenCheckingServerInMillis: 5000
     repeatsAmount: 4
     timeToWaitBetweenRepeatProbeInMillis: 1000
@@ -55,7 +55,7 @@ PROPERTIES:
   jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
   externalPort: '8000'
-  version: '1.5.0.0'
+  version: '1.5.0.1'
   switchDelayTime: 0
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000

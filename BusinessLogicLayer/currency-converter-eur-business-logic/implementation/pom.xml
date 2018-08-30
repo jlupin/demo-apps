@@ -6,7 +6,7 @@
     <parent>
         <artifactId>currency-converter-root</artifactId>
         <groupId>com.example.currency.converter</groupId>
-        <version>1.5.0.0</version>
+        <version>1.5.0.1</version>
         <relativePath>./../../../pom.xml</relativePath>
     </parent>
 
@@ -28,39 +28,39 @@
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-eur-business-logic-interfaces</artifactId>
-            <version>1.5.0.0</version>
+            <version>1.5.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>exchange-rates-data-interfaces</artifactId>
-            <version>1.5.0.0</version>
+            <version>1.5.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>common-util</artifactId>
-            <version>1.5.0.0</version>
+            <version>1.5.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>common-pojo</artifactId>
-            <version>1.5.0.0</version>
+            <version>1.5.0.1</version>
         </dependency>
 
         <!-- JLupin dependencies -->
         <dependency>
             <groupId>com.jlupin</groupId>
             <artifactId>jlupin-client-assembly</artifactId>
-            <version>${jlupin.platform.version}</version>
+            <version>${jlupin.platform.client.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.8.0-beta0</version>
+            <version>${slf4j.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
