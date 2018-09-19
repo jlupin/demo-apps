@@ -13,7 +13,7 @@
     <artifactId>exchange-access-implementation</artifactId>
     <name>exchange</name>
     <packaging>war</packaging>
-    <version>1.5.0.1</version>
+    <version>1.5.0.2</version>
 
     <repositories>
         <!-- Repository is also accessible using https connection: -->
@@ -91,19 +91,19 @@
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
-            <version>1.5.0.1</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-eur-business-logic-interfaces</artifactId>
-            <version>1.5.0.1</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-gbp-business-logic-interfaces</artifactId>
-            <version>1.5.0.1</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

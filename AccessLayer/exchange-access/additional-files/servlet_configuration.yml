@@ -26,7 +26,7 @@ PROPERTIES:
   jvmOptions1: '-Xms64M -Xmx192M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
   externalPort: '8000'
-  version: '1.5.0.1'
+  version: '1.5.0.2'
   switchDelayTime: 1000
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000
