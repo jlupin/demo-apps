@@ -7,7 +7,7 @@
     <groupId>com.example.currency.converter</groupId>
     <artifactId>currency-converter-root</artifactId>
     <packaging>pom</packaging>
-    <version>1.5.0.2</version>
+    <version>1.5.0.3</version>
 
     <repositories>
         <!-- Repository is also accessible using https connection: -->
