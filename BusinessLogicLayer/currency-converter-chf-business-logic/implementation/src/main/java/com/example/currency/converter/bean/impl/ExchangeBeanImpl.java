@@ -37,7 +37,7 @@ public class ExchangeBeanImpl implements ExchangeBean {
     }
 
     private void initRates() {
-        final File root = new File(".");
+        final File root = new File(System.getProperty("user.dir"));
         final String propertiesFilePath = root.getAbsolutePath() + File.separator + SAFE_RATES_PROPERTIES_FILE_NAME;
         final FileInputStream propertiesFileInputStream;
         try {

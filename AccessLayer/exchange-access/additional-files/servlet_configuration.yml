@@ -22,6 +22,7 @@ SERVERS:
     threadExecutingTimeOut: 3600000
     isStartOnMainServerInitialize: true
 PROPERTIES:
+  platformVersion: '1.5.0.3'
   #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx192M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'
@@ -54,6 +55,9 @@ PROPERTIES:
   jmxOptions: '-Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
   jmxPrimaryPort: -1
   jmxSecondaryPort: -1
+  isExternalHealthcheck: false
+  externalHealthcheckURI: '/sampleURI/'
+  httpStickySessionCookieOptions: 'option1=value1'
   checkAvailableScript: 'function isAvailable(checkResponseTimeInMillis, jrmcActiveThreads, jrmcMaxThreads,
                                                 queueActiveThreads, queueMaxThreads, servletActiveThreads, servletMaxThreads,
                            					    jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,

@@ -28,7 +28,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
     }
 
     private void initRates() {
-        final File root = new File(".");
+        final File root = new File(System.getProperty("user.dir"));
         final String propertiesFilePath = root.getAbsolutePath() + File.separator + EXCHANGE_RATES_PROPERTIES_FILE_NAME;
         final FileInputStream propertiesFileInputStream;
         try {

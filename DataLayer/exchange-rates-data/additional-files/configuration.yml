@@ -51,6 +51,7 @@ TRANSMISSION:
       #  serviceName: 'sampleServiceName2'
       #  methodName: 'sampleMethodName2'
 PROPERTIES:
+  platformVersion: '1.5.0.3'
   #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms128M -Xmx256M'

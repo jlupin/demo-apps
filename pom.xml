@@ -45,7 +45,7 @@
     </modules>
 
     <properties>
-        <jlupin.platform.client.version>1.5.0.2</jlupin.platform.client.version>
+        <jlupin.platform.client.version>1.5.0.3</jlupin.platform.client.version>
         <jlupin.platform.maven.plugin.version>1.5.0.0</jlupin.platform.maven.plugin.version>
         <zip.directory>../../../target</zip.directory>
         <jlupin.zipFile>${project.basedir}/${zip.directory}/${project.artifactId}.zip</jlupin.zipFile>
