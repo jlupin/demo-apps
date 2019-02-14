@@ -54,7 +54,7 @@
                                         <title>Currency Converter CHF API</title>
                                         <version>v1</version>
                                     </info>
-                                    <swaggerDirectory>${main.dir}/currency-converter-chf</swaggerDirectory>
+                                    <swaggerDirectory>${main.dir}/target/swagger/currency-converter-chf</swaggerDirectory>
                                 </apiSource>
                             </apiSources>
                         </configuration>
