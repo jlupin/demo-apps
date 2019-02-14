@@ -4,19 +4,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>currency-converter-root</artifactId>
+        <artifactId>currency-converter-parent</artifactId>
         <groupId>com.example.currency.converter</groupId>
-        <version>1.5.0.3</version>
+        <version>1.6.0.0</version>
         <relativePath>./../../../pom.xml</relativePath>
     </parent>
 
     <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
 
+    <properties>
+        <main.dir>${project.basedir}/../../../</main.dir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>common-pojo</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
         </dependency>
     </dependencies>
+
 </project>

@@ -4,64 +4,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>currency-converter-root</artifactId>
+        <artifactId>native-currency-converter</artifactId>
         <groupId>com.example.currency.converter</groupId>
-        <version>1.5.0.3</version>
-        <relativePath>./../../../pom.xml</relativePath>
+        <version>1.6.0.0</version>
+        <relativePath>./../../../native-pom.xml</relativePath>
     </parent>
 
     <name>currency-converter-chf</name>
     <artifactId>currency-converter-chf-business-logic-implementation</artifactId>
 
     <properties>
-        <jlupin.skipDeploy>false</jlupin.skipDeploy>
+        <main.dir>${project.basedir}/../../../</main.dir>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.context.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>exchange-rates-data-interfaces</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.example.currency.converter</groupId>
-            <artifactId>common-util</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.example.currency.converter</groupId>
-            <artifactId>common-pojo</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <!-- JLupin dependencies -->
-        <dependency>
-            <groupId>com.jlupin</groupId>
-            <artifactId>jlupin-client-assembly</artifactId>
-            <version>${jlupin.platform.client.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>provided</scope>
+            <version>1.6.0.0</version>
         </dependency>
     </dependencies>
 
@@ -88,14 +54,13 @@
                                         <title>Currency Converter CHF API</title>
                                         <version>v1</version>
                                     </info>
-                                    <swaggerDirectory>target/currency-converter-chf</swaggerDirectory>
+                                    <swaggerDirectory>${main.dir}/currency-converter-chf</swaggerDirectory>
                                 </apiSource>
                             </apiSources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>

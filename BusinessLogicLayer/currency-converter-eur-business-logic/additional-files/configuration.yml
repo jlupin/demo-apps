@@ -6,7 +6,7 @@ SERVERS:
     backlog: 256
     receiveBufferSize: 256
     isReuseAddress: false
-    threadPoolSize: 128
+    threadPoolSize: 8
     isLogPeriodicOnDebug: true
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 240000
@@ -18,7 +18,7 @@ SERVERS:
     backlog: 0
     receiveBufferSize: 0
     isReuseAddress: false
-    threadPoolSize: 8
+    threadPoolSize: 2
     isLogPeriodicOnDebug: true
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 3600000
@@ -30,14 +30,14 @@ SERVERS:
     backlog: 256
     receiveBufferSize: 256
     isReuseAddress: false
-    threadPoolSize: 128
+    threadPoolSize: 8
     isLogPeriodicOnDebug: true
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 240000
     isStartOnMainServerInitialize: true
 ENTRY_POINTS:
   QUEUE:
-    threadAmount: 128
+    threadAmount: 8
     howOftenCheckingServerInMillis: 5000
     repeatsAmount: 4
     timeToWaitBetweenRepeatProbeInMillis: 1000
@@ -51,12 +51,12 @@ TRANSMISSION:
       #  serviceName: 'sampleServiceName2'
       #  methodName: 'sampleMethodName2'
 PROPERTIES:
-  platformVersion: '1.5.0.3'
-  #jvmOptions1: '-Xms128M -Xmx256M -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
-  jvmOptions1: '-Xms64M -Xmx128M' #jvmOptions_2 - default the same as jvmOptions_1
-  #jvmOptions2: '-Xms128M -Xmx256M'
+  platformVersion: '1.6.0.0'
+  #jvmOptions1: '-Xms64M -Xmx128M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
+  jvmOptions1: '-Xms64M -Xmx128M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml' #jvmOptions_2 - default the same as jvmOptions_1
+  #jvmOptions2: '-Xms64M -Xmx128M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml'
   externalPort: '8000'
-  version: '1.5.0.3'
+  version: '1.6.0.0'
   switchDelayTime: 0
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000
@@ -85,13 +85,13 @@ PROPERTIES:
   jmxSecondaryPort: -1
   checkAvailableScript: 'function isAvailable(checkResponseTimeInMillis, jrmcActiveThreads, jrmcMaxThreads,
                                               queueActiveThreads, queueMaxThreads, servletActiveThreads, servletMaxThreads,
-                         					  jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,
-                         					  jvmProcessCpuLoadInPercentage, userAvailableFlag) {
-                          var isAvailableByUser = Boolean(userAvailableFlag);
-                         	if(checkResponseTimeInMillis > 20000 || !isAvailableByUser) {
-                         	   return false;
-                         	}
-                         	return true;
+                                              jvmMaxMemoryInBytes, jvmTotalMemoryInBytes, jvmFreeMemoryInBytes,
+                                              jvmProcessCpuLoadInPercentage, userAvailableFlag) {
+                           var isAvailableByUser = Boolean(userAvailableFlag);
+                           if(checkResponseTimeInMillis > 20000 || !isAvailableByUser) {
+                             return false;
+                           }
+                           return true;
                          }'
 APPLICATION:
   applicationContainerProducerClassName: 'com.example.currency.converter.configuration.CurrencyConverterEurJLupinConfiguration'
@@ -107,9 +107,9 @@ MEMORY_ERRORS:
   percentageGrowth: 15
   isHeapDump: true
 THREAD_POOLS:
-  THREAD_POOL_1:
-    size: 8
-    waitingTimeForTasksCompletionInMillis: 10000
+  #THREAD_POOL_1:
+  #  size: 8
+  #  waitingTimeForTasksCompletionInMillis: 10000
   #THREAD_POOL_2:
   #  size: 8
   #  waitingTimeForTasksCompletionInMillis: 10000

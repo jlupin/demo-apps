@@ -3,11 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>jlupin-platform-parent</artifactId>
+        <groupId>com.jlupin</groupId>
+        <version>1.6.0.2</version>
+    </parent>
 
     <groupId>com.example.currency.converter</groupId>
-    <artifactId>currency-converter-root</artifactId>
+    <artifactId>currency-converter-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.5.0.3</version>
+    <version>1.6.0.0</version>
 
     <repositories>
         <!-- Repository is also accessible using https connection: -->
@@ -32,7 +37,6 @@
     <modules>
         <module>common-util</module>
         <module>common-pojo</module>
-        <module>AccessLayer/exchange-access/implementation</module>
         <module>DataLayer/exchange-rates-data/interfaces</module>
         <module>DataLayer/exchange-rates-data/implementation</module>
         <module>BusinessLogicLayer/currency-converter-eur-business-logic/interfaces</module>
@@ -41,26 +45,25 @@
         <module>BusinessLogicLayer/currency-converter-gbp-business-logic/implementation</module>
         <module>BusinessLogicLayer/currency-converter-chf-business-logic/interfaces</module>
         <module>BusinessLogicLayer/currency-converter-chf-business-logic/implementation</module>
+        <module>AccessLayer/exchange-access/implementation</module>
         <module>integration-test</module>
     </modules>
 
     <properties>
-        <jlupin.platform.client.version>1.5.0.3</jlupin.platform.client.version>
-        <jlupin.platform.maven.plugin.version>1.5.0.0</jlupin.platform.maven.plugin.version>
-        <zip.directory>../../../target</zip.directory>
-        <jlupin.zipFile>${project.basedir}/${zip.directory}/${project.artifactId}.zip</jlupin.zipFile>
-        <jlupin.skipDeploy>true</jlupin.skipDeploy>
-        <maven.surefire.skipTests>false</maven.surefire.skipTests>
+        <main.dir>${project.basedir}/</main.dir>
+        <jlupin.deploy.skip>true</jlupin.deploy.skip>
 
-        <spring.context.version>5.0.8.RELEASE</spring.context.version>
+        <jlupin.zip.output.directory>${main.dir}/target</jlupin.zip.output.directory>
+        <jlupin.upload.input.directory>${jlupin.zip.output.directory}</jlupin.upload.input.directory>
+
+        <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
+
+        <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
         <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
         <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
-        <slf4j.version>1.8.0-alpha2</slf4j.version>
-        <log4j.slf4j.bridge.version>2.11.0</log4j.slf4j.bridge.version>
-
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -70,81 +73,5 @@
             <version>1.5.13</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.plugin.version}</version>
-                <configuration>
-                    <skipTests>${maven.surefire.skipTests}</skipTests>
-                </configuration>
-            </plugin>
-        </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.jlupin</groupId>
-                    <artifactId>jlupin-platform-maven-plugin</artifactId>
-                    <version>${jlupin.platform.maven.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>jlupin-zip</id>
-                            <goals>
-                                <goal>zip</goal>
-                            </goals>
-                            <configuration>
-                                <outputFileDirectory>${zip.directory}</outputFileDirectory>
-                                <additionalFilesDirectories>
-                                    <param>../additional-files</param>
-                                </additionalFilesDirectories>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>jlupin-deploy</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                                <goal>deploy</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>jlupin-generate-swagger</id>
-                            <goals>
-                                <goal>generate-swagger</goal>
-                            </goals>
-                            <configuration>
-                                <skipSwaggerGeneration>true</skipSwaggerGeneration>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven.failsafe.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>integration-test</id>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <includes>
-                            <include>**/Test*.java</include>
-                            <include>**/*Test.java</include>
-                            <include>**/*Tests.java</include>
-                            <include>**/*TestCase.java</include>
-                        </includes>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
 </project>

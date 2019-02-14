@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>currency-converter-parent</artifactId>
+        <groupId>com.example.currency.converter</groupId>
+        <version>1.6.0.0</version>
+        <relativePath>./pom.xml</relativePath>
+    </parent>
+
+    <artifactId>native-currency-converter</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <main.dir>${project.basedir}/</main.dir>
+        <jlupin.deploy.skip>false</jlupin.deploy.skip>
+
+        <jlupin.repackage.output.fileName>${project.artifactId}-${project.version}.${project.packaging}</jlupin.repackage.output.fileName>
+        <jlupin.zip.input.fileName>${jlupin.repackage.output.fileName}</jlupin.zip.input.fileName>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jlupin</groupId>
+            <artifactId>jlupin-platform-native</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>common-util</artifactId>
+            <version>1.6.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.currency.converter</groupId>
+            <artifactId>common-pojo</artifactId>
+            <version>1.6.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-app-${project.version}</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-platform-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>jlupin-repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jlupin-zip</id>
+                        <goals>
+                            <goal>zip</goal>
+                        </goals>
+                        <configuration>
+                            <additionalFilesDirectories>
+                                <param>../additional-files</param>
+                            </additionalFilesDirectories>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jlupin-deploy</id>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

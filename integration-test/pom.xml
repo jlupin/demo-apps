@@ -2,17 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>currency-converter-root</artifactId>
+        <artifactId>currency-converter-parent</artifactId>
         <groupId>com.example.currency.converter</groupId>
-        <version>1.5.0.3</version>
+        <version>1.6.0.0</version>
         <relativePath>./../pom.xml</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>integration-test</artifactId>
 
     <properties>
+        <main.dir>${project.basedir}/../</main.dir>
         <maven.surefire.skipTests>true</maven.surefire.skipTests>
     </properties>
 
@@ -27,44 +28,51 @@
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>common-util</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>common-pojo</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-chf-business-logic-interfaces</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-eur-business-logic-interfaces</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>currency-converter-gbp-business-logic-interfaces</artifactId>
-            <version>${project.version}</version>
+            <version>1.6.0.0</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- JLupin dependencies -->
         <dependency>
             <groupId>com.jlupin</groupId>
             <artifactId>jlupin-client-assembly</artifactId>
-            <version>${jlupin.platform.client.version}</version>
-            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
     </dependencies>
 
@@ -72,7 +80,34 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <skipTests>${maven.surefire.skipTests}</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>**/Test*.java</include>
+                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
+                        <include>**/*TestCase.java</include>
+                    </includes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
