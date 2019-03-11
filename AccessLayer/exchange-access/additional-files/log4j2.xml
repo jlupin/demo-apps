@@ -14,7 +14,7 @@
 <Configuration status="WARN" dest="errors/exchange_log4j2_status.log">
     <!-- Extract log directory and file name into variables -->
     <Properties>
-        <Property name="logDirectory">${sys:platform.dir}/logs/microservice/${sys:microservice_name}</Property>
+        <Property name="logDirectory">${sys:platform.dir}/logs/microservice/${sys:microservice.name}</Property>
         <Property name="logFileName">microservice</Property>
     </Properties>
 
