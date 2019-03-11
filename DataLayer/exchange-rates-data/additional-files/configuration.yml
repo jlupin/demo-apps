@@ -37,26 +37,49 @@ SERVERS:
     isStartOnMainServerInitialize: true
 ENTRY_POINTS:
   QUEUE:
+    isStartOnMainServerInitialize: true
     threadAmount: 8
-    howOftenCheckingServerInMillis: 5000
-    repeatsAmount: 4
-    timeToWaitBetweenRepeatProbeInMillis: 1000
-TRANSMISSION:
-  MICROSERVICES_GRANT_ACCESS:
-    MICROSERVICES_LIST:
-      #- microserviceName: 'sampleMicroservice'
-      #  serviceName: 'sampleServiceName'
-      #  methodName: 'sampleMethodName'
-      #- microserviceName: 'sampleMicroservice2'
-      #  serviceName: 'sampleServiceName2'
-      #  methodName: 'sampleMethodName2'
+    DELEGATOR_SETTINGS:
+      repeatsAmount: 3
+      timeToWaitBetweenRepeatProbeInMillis: 1000
+    SERVICE_REPOSITORY_SETTINGS:
+      isAlive: true
+      howOftenCheckingMicroservicesInMillis: 5000
+      externalNodePeersStartCheckDelayInMillis: 5000
+      SOCKET_PROPERTIES_TO_CONNECT_WITH_PEERS:
+        connectionTimeoutInMillis: 1000
+        readTimeoutInMillis: 90000
+        isKeepAlive: false
+        isOOBInline: false
+        isTcpNoDelay: false
+        isReuseAddress: false
+        sendBufferSize: 0
+        receiveBufferSize: 0
+        soLinger: 0
+        trafficClass: 0
+    LOAD_BALANCER_SETTINGS:
+      ALGORITHM:
+        type: priority
+      PROPERTIES:
+        changeServerIntervalInMillis: 5000
+        repeatsAmount: 3
+  TRANSMISSION:
+    SERIALIZER:
+      producer: com.jlupin.impl.functional.supplier.serializer.JLupinJAVASerializerSupplierImpl
+    MICROSERVICES_GRANT_ACCESS:
+    #- microserviceName: 'sampleMicroservice'
+    #  serviceName: 'sampleServiceName'
+    #  methodName: 'sampleMethodName'
+    #- microserviceName: 'sampleMicroservice2'
+    #  serviceName: 'sampleServiceName2'
+    #  methodName: 'sampleMethodName2'
 PROPERTIES:
-  platformVersion: '1.6.0.0'
+  platformVersion: '1.6.1.0'
   #jvmOptions1: '-Xms64M -Xmx128M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx128M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms64M -Xmx128M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml'
   externalPort: '8000'
-  version: '1.6.0.0'
+  version: '1.6.1.0'
   switchDelayTime: 0
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000

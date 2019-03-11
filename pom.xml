@@ -6,13 +6,13 @@
     <parent>
         <artifactId>jlupin-platform-parent</artifactId>
         <groupId>com.jlupin</groupId>
-        <version>1.6.0.2</version>
+        <version>1.6.1.0</version>
     </parent>
 
     <groupId>com.example.currency.converter</groupId>
     <artifactId>currency-converter-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.0.0</version>
+    <version>1.6.1.0</version>
 
     <repositories>
         <!-- Repository is also accessible using https connection: -->

@@ -22,13 +22,17 @@ SERVERS:
     isDestroyThreadOnTimeout: false
     threadExecutingTimeOut: 3600000
     isStartOnMainServerInitialize: true
+ENTRY_POINTS:
+  TRANSMISSION:
+    SERIALIZER:
+      producer: com.jlupin.impl.functional.supplier.serializer.JLupinJAVASerializerSupplierImpl
 PROPERTIES:
-  platformVersion: '1.6.0.0'
+  platformVersion: '1.6.1.0'
   #jvmOptions1: '-Xms64M -Xmx192M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml -Dlogging.config=${microservice.dir}/log4j2.xml -agentlib:jdwp=transport=dt_socket,address=12998,server=y,suspend=n'
   jvmOptions1: '-Xms64M -Xmx192M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml -Dlogging.config=${microservice.dir}/log4j2.xml' #jvmOptions_2 - default the same as jvmOptions_1
   #jvmOptions2: '-Xms64M -Xmx192M -Dlog4j.configurationFile=${sys:microservice.dir}/log4j2.xml -Dlogging.config=${microservice.dir}/log4j2.xml'
   externalPort: '8000'
-  version: '1.6.0.0'
+  version: '1.6.1.0'
   switchDelayTime: 0
   connectionSocketTimeoutInMillis: 1000
   readTimeoutInMillis: 30000

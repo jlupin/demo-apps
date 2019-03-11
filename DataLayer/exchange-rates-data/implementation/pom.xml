@@ -6,7 +6,7 @@
     <parent>
         <artifactId>native-currency-converter</artifactId>
         <groupId>com.example.currency.converter</groupId>
-        <version>1.6.0.0</version>
+        <version>1.6.1.0</version>
         <relativePath>./../../../native-pom.xml</relativePath>
     </parent>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com.example.currency.converter</groupId>
             <artifactId>exchange-rates-data-interfaces</artifactId>
-            <version>1.6.0.0</version>
+            <version>1.6.1.0</version>
         </dependency>
     </dependencies>
 
